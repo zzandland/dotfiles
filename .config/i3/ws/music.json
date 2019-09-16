@@ -1,0 +1,75 @@
+// vim:ts=4:sw=4:et
+{
+    // floating_con with 1 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 486,
+       "width": 783,
+       "x": 77,
+       "y": 398
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "user_on",
+            "geometry": {
+               "height": 434,
+               "width": 731,
+               "x": 0,
+               "y": 0
+            },
+            "name": "vis",
+            "percent": 1,
+            "swallows": [
+               {
+                 "class": "^Termite$",
+                 "instance": "^vis$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    // floating_con with 1 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 936,
+       "width": 893,
+       "x": 975,
+       "y": 72
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "user_on",
+            "geometry": {
+               "height": 434,
+               "width": 731,
+               "x": 0,
+               "y": 0
+            },
+            "name": "mpsyt",
+            "percent": 1,
+            "swallows": [
+               {
+                 "class": "^Termite$",
+                 "instance": "^mpsyt$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

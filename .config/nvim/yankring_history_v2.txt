@@ -1,0 +1,100 @@
+,V
+!/.config/vis/*,V
+!/.config/polybar/*,V
+!/.config/i3/ws/,V
+!/.config/nvim/*,V
+*/,v
+!/.config/i3/*,V
+!/.config/i3/,V
+conky/*,v
+!/.config/conky/*,V
+!/.config/xrandr/,V
+!/.config/vis/,V
+!/.config/termite/,V
+!/.config/redshift/,V
+!/.config/polybar/,V
+!/.config/nvim/,V
+!/.config/conky/,V
+!/.config/compton/,V
+!/Wallpapers/,V
+node_modules,V
+/,v
+!*/,V
+!/.config/*,V
+!/.config/,V
+compton/,v
+*,v
+polybar,v
+!/.config/polybar,V
+nvim,v
+!/.config/nvim,V
+conky,v
+!/.config/conky,V
+compton,v
+!/.config/compton,V
+https://github.com/zzandland/dotfiles.git,v
+!/note.txt,V
+/**!/.gitignore,v
+key,v
+00:06:66:F3:CD:06,v
+const {  GraphQLSchema,  GraphQLObjectType,  GraphQLString,  GraphQLList,  GraphQLInt,  GraphQLID,  GraphQLNonNull,,V
+Graph,V
+ap,V
+process.,V
+{    "plugins": {        "node": {}    }},v
+expressGraphQL.,V
+Graph,V
+Document.hasOwnProperty,V
+{  "libs": [    "ecma5",    "ecma6",    "browser"  ],  "loadEagerly": [  ],  "plugins": {    "node": {}  }},v
+docume,V
+                \ '...',V
+" Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 0" Whether to include the distance (in scopes for variables, in prototypes for" properties) between the completions and the origin position in the result" data. Default: 0let g:deoplete#sources#ternjs#depths = 0" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the" client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and" potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1,V
+",v
+"",V
+" Set bin if you have many instalationslet g:deoplete#sources#ternjs#tern_bin = '/path/to/tern_bin'let g:deoplete#sources#ternjs#timeout = 1" Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 1" Whether to include the distance (in scopes for variables, in prototypes for " properties) between the completions and the origin position in the result " data. Default: 0let g:deoplete#sources#ternjs#depths = 1" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the " client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and " potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1" When completing a property and no completions are found, Tern will use some " heuristics to try and return some properties anyway. Set this to 0 to " turn that off. Default: 1let g:deoplete#sources#ternjs#guess = 0" Determines whether the result set will be sorted. Default: 1let g:deoplete#sources#ternjs#sort = 0" When disabled, only the text before the given position is considered part of " the word. When enabled (the default), the whole variable name that the cursor" is on will be included. Default: 1let g:deoplete#sources#ternjs#expand_word_forward = 0" Whether to ignore the properties of Object.prototype unless they have been " spelled out by at least two characters. Default: 1let g:deoplete#sources#ternjs#omit_object_prototype = 0" Whether to include JavaScript keywords when completing something that is not " a property. Default: 0let g:deoplete#sources#ternjs#include_keywords = 1" If completions should be returned when inside a literal. Default: 1let g:deoplete#sources#ternjs#in_literal = 0"Add extra filetypeslet g:deoplete#sources#ternjs#filetypes = [                \ 'jsx',                \ 'javascript.jsx',                \ 'vue',                \ '...'                \ ],v
+docu,V
+" this needs to be here, so vim-plug knows we are declaring the plugins we" want to use,V
+- Constructed stateful React components with Styled Components to modularize relevant HTML/CSS/JS, executed separation of concerns and achieved 90+ scores for both web and mobile on Google PageSpeed Insights.- Designed algorithm-based logic using Moment.js to create dynamic, responsive calendar and hours of operation table based on concurrent time/date.- Deployed the application with Docker and AWS EC2 to modularize usability of respective components and ease merging team’s modules in a service-oriented fashion. ,v
+          console.log(q);,V
+.,v
+args,v
+          return {            name,            author_id,          };,V
+{ name, author_id },v
+         ,V
+   ,v
+        return author;,V
+        const author = {          id: authors.length + 1,          name: args.name,        };        authors.push(author);,V
+        return book;,V
+        const book = {          name: args.name,          author_id: args.author_id,        };,V
+        books.push(book);,V
+          id: books.length + 1,,V
+books.filter((book) => book.author_id === author.id),,v
+author,v
+authorId,v
+I,v
+ ,v
+,,v
+book,v
+id,v
+',v
+authors.find((author) => author.id === book.authorId),,v
+books.find((book) => book.id === args.id),,v
+books,v
+const authors = [  { id: 1, name: 'J. K. Rowling' },  { id: 2, name: 'J. R. R. Tolkien' },  { id: 3, name: 'Brent Weeks' },];const books = [  { id: 1, name: 'Harry Potter and the Chamber of Secrets', authorId: 1 },  { id: 2, name: 'Harry Potter and the Prisoner of Azkaban', authorId: 1 },  { id: 3, name: 'Harry Potter and the Goblet of Fire', authorId: 1 },  { id: 4, name: 'The Fellowship of the Ring', authorId: 2 },  { id: 5, name: 'The Two Towers', authorId: 2 },  { id: 6, name: 'The Return of the King', authorId: 2 },  { id: 7, name: 'The Way of Shadows', authorId: 3 },  { id: 8, name: 'Beyond the Shadows', authorId: 3 },];,V
+DROP TABLE IF EXISTS book CASCADE;CREATE TABLE book(  id SERIAL,  name VARCHAR(300) NOT NULL,  author_id INT NOT NULL,  PRIMARY KEY(id),  CONSTRAINT author_id FOREIGN KEY(id)    REFERENCES Author(id) MATCH SIMPLE    ON UPDATE NO ACTION ON DELETE NO ACTION);,V
+EXISTS ,v
+DROP TABLE IF EXISTS author;CREATE TABLE author(  id SERIAL,  name VARCHAR(50) NOT NULL,  PRIMARY KEY(id));,V
+ 'Beyond the Shadows',v
+ 'The Way of Shadows',v
+ 'The Return of the King',v
+ 'The Two Towers',v
+ 'The Fellowship of the Ring',v
+ 'Harry Potter and the Goblet of Fire',v
+ 'Harry Potter and the Prisoner of Azkaban',v
+'Harry',v
+IF NOT ,v
+  { id: 1, name: 'J. K. Rowling' },  { id: 2, name: 'J. R. R. Tolkien' },,V
+B,v
+A,v
+a,v
+],v
