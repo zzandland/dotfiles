@@ -213,3 +213,6 @@ exec ~/.config/i3/ws/main.sh
 
 # autostart redshift
 exec --no-startup-id redshift
+
+# autostart insync
+exec insync start

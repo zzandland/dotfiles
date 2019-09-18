@@ -1,4 +1,31 @@
+# autostart insyncinsync start,V
+ ,v
+#set smtp_url = "smtps://yourusername@yourdomain.ext@smtp.gmail.com:587",V
+#,v
+set smtp_pass = "wjsxmvfinhsnzwik",V
+set imap_pass = "wjsxmvfinhsnzwik",V
 ,V
+ "Ks58520824",V
+ "Ks58520824",v
+w,v
+imap_pass,v
+set imap_pass = "Ks58520824",V
+count,v
+ORDER BY released_year,V
+ORDER BY released_yearGROUP BY released_year ASC;,V
+*,v
+COUNT,v
+",v
+\,v
+SERIAL,v
+INT NOT NULL UNIQUE,v
+SERIES,v
+INT,v
+AUTO_INCREMENT,v
+DROP DATABASE IF EXISTS book_shop;CREATE DATABASE book_shop;USE book_shop;  CREATE TABLE books 	(		book_id INT NOT NULL AUTO_INCREMENT,		title VARCHAR(100),		author_fname VARCHAR(100),		author_lname VARCHAR(100),		released_year INT,		stock_quantity INT,		pages INT,		PRIMARY KEY(book_id)	); INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)VALUES('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),('The Circle', 'Dave', 'Eggers', 2013, 26, 504),('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),('Just Kids', 'Patti', 'Smith', 2010, 55, 304),('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),('White Noise', 'Don', 'DeLillo', 1985, 49, 320),('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);,v
+import { graphqlRequest } from './requests';,V
+" Java autocompletionPlug 'artur-shaik/vim-javacomplete2',V
+Our engineering team operates on bi-weekly sprints. Each sprint begins with a Monday planning/brainstorming and end of day goal setting. Each week ends with a short retro and demos. Engineers are given autonomy and support to craft solutions to business problems. We ship frequently and leverage GitHub and Heroku to ease that process. Each improvement we make in our efficiency or reach leads to more first time homeowners.,v
 !/.config/vis/*,V
 !/.config/polybar/*,V
 !/.config/i3/ws/,V
@@ -23,7 +50,6 @@ node_modules,V
 !/.config/*,V
 !/.config/,V
 compton/,v
-*,v
 polybar,v
 !/.config/polybar,V
 nvim,v
@@ -49,7 +75,6 @@ Document.hasOwnProperty,V
 docume,V
                 \ '...',V
 " Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 0" Whether to include the distance (in scopes for variables, in prototypes for" properties) between the completions and the origin position in the result" data. Default: 0let g:deoplete#sources#ternjs#depths = 0" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the" client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and" potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1,V
-",v
 "",V
 " Set bin if you have many instalationslet g:deoplete#sources#ternjs#tern_bin = '/path/to/tern_bin'let g:deoplete#sources#ternjs#timeout = 1" Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 1" Whether to include the distance (in scopes for variables, in prototypes for " properties) between the completions and the origin position in the result " data. Default: 0let g:deoplete#sources#ternjs#depths = 1" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the " client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and " potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1" When completing a property and no completions are found, Tern will use some " heuristics to try and return some properties anyway. Set this to 0 to " turn that off. Default: 1let g:deoplete#sources#ternjs#guess = 0" Determines whether the result set will be sorted. Default: 1let g:deoplete#sources#ternjs#sort = 0" When disabled, only the text before the given position is considered part of " the word. When enabled (the default), the whole variable name that the cursor" is on will be included. Default: 1let g:deoplete#sources#ternjs#expand_word_forward = 0" Whether to ignore the properties of Object.prototype unless they have been " spelled out by at least two characters. Default: 1let g:deoplete#sources#ternjs#omit_object_prototype = 0" Whether to include JavaScript keywords when completing something that is not " a property. Default: 0let g:deoplete#sources#ternjs#include_keywords = 1" If completions should be returned when inside a literal. Default: 1let g:deoplete#sources#ternjs#in_literal = 0"Add extra filetypeslet g:deoplete#sources#ternjs#filetypes = [                \ 'jsx',                \ 'javascript.jsx',                \ 'vue',                \ '...'                \ ],v
 docu,V
@@ -72,29 +97,4 @@ books.filter((book) => book.author_id === author.id),,v
 author,v
 authorId,v
 I,v
- ,v
 ,,v
-book,v
-id,v
-',v
-authors.find((author) => author.id === book.authorId),,v
-books.find((book) => book.id === args.id),,v
-books,v
-const authors = [  { id: 1, name: 'J. K. Rowling' },  { id: 2, name: 'J. R. R. Tolkien' },  { id: 3, name: 'Brent Weeks' },];const books = [  { id: 1, name: 'Harry Potter and the Chamber of Secrets', authorId: 1 },  { id: 2, name: 'Harry Potter and the Prisoner of Azkaban', authorId: 1 },  { id: 3, name: 'Harry Potter and the Goblet of Fire', authorId: 1 },  { id: 4, name: 'The Fellowship of the Ring', authorId: 2 },  { id: 5, name: 'The Two Towers', authorId: 2 },  { id: 6, name: 'The Return of the King', authorId: 2 },  { id: 7, name: 'The Way of Shadows', authorId: 3 },  { id: 8, name: 'Beyond the Shadows', authorId: 3 },];,V
-DROP TABLE IF EXISTS book CASCADE;CREATE TABLE book(  id SERIAL,  name VARCHAR(300) NOT NULL,  author_id INT NOT NULL,  PRIMARY KEY(id),  CONSTRAINT author_id FOREIGN KEY(id)    REFERENCES Author(id) MATCH SIMPLE    ON UPDATE NO ACTION ON DELETE NO ACTION);,V
-EXISTS ,v
-DROP TABLE IF EXISTS author;CREATE TABLE author(  id SERIAL,  name VARCHAR(50) NOT NULL,  PRIMARY KEY(id));,V
- 'Beyond the Shadows',v
- 'The Way of Shadows',v
- 'The Return of the King',v
- 'The Two Towers',v
- 'The Fellowship of the Ring',v
- 'Harry Potter and the Goblet of Fire',v
- 'Harry Potter and the Prisoner of Azkaban',v
-'Harry',v
-IF NOT ,v
-  { id: 1, name: 'J. K. Rowling' },  { id: 2, name: 'J. R. R. Tolkien' },,V
-B,v
-A,v
-a,v
-],v

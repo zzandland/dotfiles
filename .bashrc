@@ -21,7 +21,7 @@ alias ls='ls -p --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias monitor="$HOME/.config/xrandr/monitor_autoswitcher.sh"
-alias kb="bluetoothctl connect 00:06:66:F3:CD:06"
+alias kbd="bluetoothctl connect 00:06:66:F3:CD:06"
 alias music='~/.config/i3/ws/music.sh'
 PS1="\n\$(if [[ \$? == 0 ]]; then echo \"\[\033[0;34m\]\"; else echo \"\[\033[0;31m\]\"; fi)\342\226\210\342\226\210 [ \u ] [ \w ]\n\[\033[0m\]\342\226\210\342\226\210 "
 
