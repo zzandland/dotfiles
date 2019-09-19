@@ -1,3 +1,7 @@
+b:q,V
+V,v
+unbind pager V,V
+H,v
 !/.config/neomutt/,V
 exit,v
 bind,v
@@ -94,7 +98,3 @@ Our engineering team operates on bi-weekly sprints. Each sprint begins with a Mo
 */,v
 !/.config/i3/*,V
 !/.config/i3/,V
-conky/*,v
-!/.config/conky/*,V
-!/.config/xrandr/,V
-!/.config/vis/,V

@@ -45,7 +45,7 @@ set pager_index_lines   = 10    # number of index lines to show
 set pager_context       = 3     # number of context lines to show
 
 # set editor to neovim
-set editor = "nvim"
+set editor = "nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
 # use utf-8
 set charset = "utf-8"
 # Disable saving outgoing mail since Gmail saves them by default.
@@ -80,4 +80,6 @@ bind pager j next-line
 bind pager k previous-line
 bind pager \Cd next-page
 bind pager \cu previous-page
-macro pager H "<view-attachments><search>text/html<enter><view-mailcap><exit>"
+bind pager \Cj next-entry
+bind pager \Ck previous-entry
+macro index,pager \Cv "<view-attachments><search>text/html<enter><view-mailcap><exit>"
