@@ -11,6 +11,8 @@
 !/.config/i3/ws/*
 !/.config/nvim/
 !/.config/nvim/*
+!/.config/neomutt/
+!/.config/neomutt/*
 !/.config/nvim/spell/*
 !/.config/polybar/
 !/.config/polybar/*

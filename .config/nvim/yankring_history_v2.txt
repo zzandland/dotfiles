@@ -1,10 +1,71 @@
-# autostart insyncinsync start,V
+!/.config/neomutt/,V
+exit,v
+bind,v
+"<view-attachments><search>html<enter><view-mailcap><exit>",v
  ,v
+w3m,v
+s,v
+%,v
+=,v
+p,v
+a,v
+-,v
+usr/bin/chromium,v
+ --app=,v
+m,v
+u,v
+d,v
+ test=test -n "$DISPLAY"; ,v
+ --new-window --start-fullscreen,v
+kiosk,v
+incognito,v
+t,v
+F,v
+v,v
+text/html; /usr/bin/chromium %s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal,V
+e,v
+o,v
+r,v
+h,v
+c,v
+l,v
+google,v
+text/html; chromium file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;,V
+ xdg-open,v
+ text/html,v
+xdg-open,v
+view-mailcap,v
+# auto convert text/html MIME type to text/plain,V
+ htmail-view,v
+INBOX,v
+Mail,v
+mutt,v
+ (optional),v
+# mailcap file to use (optional)set mailcap_path="~/.mutt/mailcap",v
+,V
+# handover mail to htmail-view (works only for multipart mails containing text/html payload)macro index,pager H "<pipe-message>htmail-decode<return>" "render html mail using htmail-view",v
+ text/enriched text/plain text,v
+Passed the Triplebyte assessment and interview forGeneralist Software Engineering,v
+May,v
+asked few times,v
+called,v
+back in ,v
+and ,v
+',v
+My account id for,v
+I do have another entry to the States back in January, but I cannot getthe flight information as I have cleaned my gmail mailbox once.,V
+set query,V
+set query_command= "mail-query '%s' ~/Mail/INBOX | perl -CS -MEncode -ne 'print decode(\"MIME-Header\", $_)'",V
+set envelope_from = yes,V
+https://github.com/pbrisbin/mail-query.git,v
+ text/html text,v
+##text/html; /usr/bin/xdg-open %s ; copiousoutput,V
+https://www.meetup.com/moriagari/events/vgthdryzmbfc/,v
+# autostart insyncinsync start,V
 #set smtp_url = "smtps://yourusername@yourdomain.ext@smtp.gmail.com:587",V
 #,v
 set smtp_pass = "wjsxmvfinhsnzwik",V
 set imap_pass = "wjsxmvfinhsnzwik",V
-,V
  "Ks58520824",V
  "Ks58520824",v
 w,v
@@ -37,64 +98,3 @@ conky/*,v
 !/.config/conky/*,V
 !/.config/xrandr/,V
 !/.config/vis/,V
-!/.config/termite/,V
-!/.config/redshift/,V
-!/.config/polybar/,V
-!/.config/nvim/,V
-!/.config/conky/,V
-!/.config/compton/,V
-!/Wallpapers/,V
-node_modules,V
-/,v
-!*/,V
-!/.config/*,V
-!/.config/,V
-compton/,v
-polybar,v
-!/.config/polybar,V
-nvim,v
-!/.config/nvim,V
-conky,v
-!/.config/conky,V
-compton,v
-!/.config/compton,V
-https://github.com/zzandland/dotfiles.git,v
-!/note.txt,V
-/**!/.gitignore,v
-key,v
-00:06:66:F3:CD:06,v
-const {  GraphQLSchema,  GraphQLObjectType,  GraphQLString,  GraphQLList,  GraphQLInt,  GraphQLID,  GraphQLNonNull,,V
-Graph,V
-ap,V
-process.,V
-{    "plugins": {        "node": {}    }},v
-expressGraphQL.,V
-Graph,V
-Document.hasOwnProperty,V
-{  "libs": [    "ecma5",    "ecma6",    "browser"  ],  "loadEagerly": [  ],  "plugins": {    "node": {}  }},v
-docume,V
-                \ '...',V
-" Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 0" Whether to include the distance (in scopes for variables, in prototypes for" properties) between the completions and the origin position in the result" data. Default: 0let g:deoplete#sources#ternjs#depths = 0" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the" client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and" potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1,V
-"",V
-" Set bin if you have many instalationslet g:deoplete#sources#ternjs#tern_bin = '/path/to/tern_bin'let g:deoplete#sources#ternjs#timeout = 1" Whether to include the types of the completions in the result data. Default: 0let g:deoplete#sources#ternjs#types = 1" Whether to include the distance (in scopes for variables, in prototypes for " properties) between the completions and the origin position in the result " data. Default: 0let g:deoplete#sources#ternjs#depths = 1" Whether to include documentation strings (if found) in the result data." Default: 0let g:deoplete#sources#ternjs#docs = 1" When on, only completions that match the current word at the given point will" be returned. Turn this off to get all results, so that you can filter on the " client side. Default: 1let g:deoplete#sources#ternjs#filter = 0" Whether to use a case-insensitive compare between the current word and " potential completions. Default 0let g:deoplete#sources#ternjs#case_insensitive = 1" When completing a property and no completions are found, Tern will use some " heuristics to try and return some properties anyway. Set this to 0 to " turn that off. Default: 1let g:deoplete#sources#ternjs#guess = 0" Determines whether the result set will be sorted. Default: 1let g:deoplete#sources#ternjs#sort = 0" When disabled, only the text before the given position is considered part of " the word. When enabled (the default), the whole variable name that the cursor" is on will be included. Default: 1let g:deoplete#sources#ternjs#expand_word_forward = 0" Whether to ignore the properties of Object.prototype unless they have been " spelled out by at least two characters. Default: 1let g:deoplete#sources#ternjs#omit_object_prototype = 0" Whether to include JavaScript keywords when completing something that is not " a property. Default: 0let g:deoplete#sources#ternjs#include_keywords = 1" If completions should be returned when inside a literal. Default: 1let g:deoplete#sources#ternjs#in_literal = 0"Add extra filetypeslet g:deoplete#sources#ternjs#filetypes = [                \ 'jsx',                \ 'javascript.jsx',                \ 'vue',                \ '...'                \ ],v
-docu,V
-" this needs to be here, so vim-plug knows we are declaring the plugins we" want to use,V
-- Constructed stateful React components with Styled Components to modularize relevant HTML/CSS/JS, executed separation of concerns and achieved 90+ scores for both web and mobile on Google PageSpeed Insights.- Designed algorithm-based logic using Moment.js to create dynamic, responsive calendar and hours of operation table based on concurrent time/date.- Deployed the application with Docker and AWS EC2 to modularize usability of respective components and ease merging team’s modules in a service-oriented fashion. ,v
-          console.log(q);,V
-.,v
-args,v
-          return {            name,            author_id,          };,V
-{ name, author_id },v
-         ,V
-   ,v
-        return author;,V
-        const author = {          id: authors.length + 1,          name: args.name,        };        authors.push(author);,V
-        return book;,V
-        const book = {          name: args.name,          author_id: args.author_id,        };,V
-        books.push(book);,V
-          id: books.length + 1,,V
-books.filter((book) => book.author_id === author.id),,v
-author,v
-authorId,v
-I,v
-,,v

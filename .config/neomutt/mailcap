@@ -1,0 +1,14 @@
+###
+### Begin Red Hat Mailcap
+###
+
+audio/*; /usr/bin/xdg-open %s
+
+image/*; /usr/bin/xdg-open %s
+
+application/msword; /usr/bin/xdg-open %s
+application/pdf; /usr/bin/xdg-open %s
+application/postscript ; /usr/bin/xdg-open %s
+
+text/html; chromium --app=file://%s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html
+text/html; w3m -v -F -T text/html; copiousoutput
