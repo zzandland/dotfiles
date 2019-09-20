@@ -27,8 +27,11 @@ Plug 'majutsushi/tagbar'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
-" Gruvbox theme
+" Gruvbox theme for airline
 Plug 'morhetz/gruvbox'
+
+" Gruvbox 8 theme
+Plug 'lifepillar/vim-gruvbox8'
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -190,7 +193,8 @@ command Py !python %:t
 " Edit them as you wish.
 
 " Gruvbox -----------------------------
-colorscheme gruvbox
+set background=dark
+colorscheme gruvbox8
 
 " Tagbar -----------------------------
 

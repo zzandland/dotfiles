@@ -1,3 +1,10 @@
+But it ,V
+8,v
+,V
+ ,v
+",v
+Plug 'morhetz/gruvbox',V
+https://www.deptofnumbers.com/income/new-york/,v
 b:q,V
 V,v
 unbind pager V,V
@@ -6,7 +13,6 @@ H,v
 exit,v
 bind,v
 "<view-attachments><search>html<enter><view-mailcap><exit>",v
- ,v
 w3m,v
 s,v
 %,v
@@ -46,7 +52,6 @@ Mail,v
 mutt,v
  (optional),v
 # mailcap file to use (optional)set mailcap_path="~/.mutt/mailcap",v
-,V
 # handover mail to htmail-view (works only for multipart mails containing text/html payload)macro index,pager H "<pipe-message>htmail-decode<return>" "render html mail using htmail-view",v
  text/enriched text/plain text,v
 Passed the Triplebyte assessment and interview forGeneralist Software Engineering,v
@@ -80,7 +85,6 @@ ORDER BY released_year,V
 ORDER BY released_yearGROUP BY released_year ASC;,V
 *,v
 COUNT,v
-",v
 \,v
 SERIAL,v
 INT NOT NULL UNIQUE,v
@@ -94,7 +98,3 @@ Our engineering team operates on bi-weekly sprints. Each sprint begins with a Mo
 !/.config/vis/*,V
 !/.config/polybar/*,V
 !/.config/i3/ws/,V
-!/.config/nvim/*,V
-*/,v
-!/.config/i3/*,V
-!/.config/i3/,V
