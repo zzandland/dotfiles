@@ -1,4 +1,39 @@
+let g:airline_powerline_fonts = 0,V
+let g:airline_theme = 'gruvbox',V
+let g:airline#extensions#whitespace#enabled = 0,V
 ,V
+" to use fancy symbols for airline, uncomment the following lines and use a,V
+" patched font (more info on the README.rst),V
+if !exists('g:airline_symbols'),V
+  let g:airline_symbols = {},V
+endif,V
+let g:airline_left_sep = '⮀'let g:airline_left_alt_sep = '⮁'let g:airline_right_sep = '⮂'let g:airline_right_alt_sep = '⮃'let g:airline_symbols.branch = '⭠'let g:airline_symbols.readonly = '⭤'let g:airline_symbols.linenr = '⭡',V
+Hotkeys Project Terminal Transparent Topre 6u Spacebar,v
+  TIMESTAMP '2019-04-01 10:18:00',,V
+,,v
+TIMESTAMP '2019-01',V
+  TIMESTAMP '2019-01-02 03:15:00',,V
+  'FMMonth ',V
+  'FMMonth FMDDth at FMHH:FMMI',V
+),V
+D,v
+9,v
+/,v
+  --  ' ',,V
+',v
+0,v
+    now(),,V
+    '2019/01/02 03:15:00',,V
+ ,v
+  ),V
+  CONCAT(,V
+    CONCAT    (      TRIM()    ),V
+      ,V
+'Month ',v
+),v
+current_date,v
+takes up more memory per value but can handle a wider range. Timesta,v
+ IF EXISTS;,v
 getComments,V
 Object.freeze(),V
 Graph,V
@@ -27,7 +62,6 @@ t,v
 i,v
 g,v
 .,v
-/,v
 let g:easytags_always_enabled = 1,V
 " TODO known problems:" * current block not refreshing,V
 " ,V
@@ -35,7 +69,6 @@ https://www.youtube.com/watch?v=MpV5rBLVkQI,v
 _hard,v
 But it ,V
 8,v
- ,v
 Plug 'morhetz/gruvbox',V
 https://www.deptofnumbers.com/income/new-york/,v
 b:q,V
@@ -65,36 +98,3 @@ F,v
 v,v
 text/html; /usr/bin/chromium %s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal,V
 e,v
-r,v
-h,v
-google,v
-text/html; chromium file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;,V
- xdg-open,v
- text/html,v
-xdg-open,v
-view-mailcap,v
-# auto convert text/html MIME type to text/plain,V
- htmail-view,v
-INBOX,v
-Mail,v
-mutt,v
- (optional),v
-# mailcap file to use (optional)set mailcap_path="~/.mutt/mailcap",v
-# handover mail to htmail-view (works only for multipart mails containing text/html payload)macro index,pager H "<pipe-message>htmail-decode<return>" "render html mail using htmail-view",v
- text/enriched text/plain text,v
-Passed the Triplebyte assessment and interview forGeneralist Software Engineering,v
-May,v
-asked few times,v
-called,v
-back in ,v
-and ,v
-',v
-My account id for,v
-I do have another entry to the States back in January, but I cannot getthe flight information as I have cleaned my gmail mailbox once.,V
-set query,V
-set query_command= "mail-query '%s' ~/Mail/INBOX | perl -CS -MEncode -ne 'print decode(\"MIME-Header\", $_)'",V
-set envelope_from = yes,V
-https://github.com/pbrisbin/mail-query.git,v
- text/html text,v
-##text/html; /usr/bin/xdg-open %s ; copiousoutput,V
-https://www.meetup.com/moriagari/events/vgthdryzmbfc/,v
