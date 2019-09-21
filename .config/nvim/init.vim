@@ -21,8 +21,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Class/module browser
 Plug 'majutsushi/tagbar'
-" TODO known problems:
-" * current block not refreshing
+
+" Manages tag files automatically
+Plug 'ludovicchabant/vim-gutentags'
 
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
@@ -195,6 +196,9 @@ command Py !python %:t
 " Gruvbox -----------------------------
 set background=dark
 colorscheme gruvbox8
+
+" Vim-Gutentags------------------------
+let g:gutentags_ctags_exclude=['node_modules', '.git', 'package*.json']
 
 " Tagbar -----------------------------
 

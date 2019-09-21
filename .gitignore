@@ -1,6 +1,7 @@
 *
 !/.gitignore
 !/.bashrc
+!/.ctags
 !/.config/
 !/.config/compton/
 !/.config/compton/*

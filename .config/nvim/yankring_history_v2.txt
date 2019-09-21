@@ -1,8 +1,41 @@
+,V
+getComments,V
+Object.freeze(),V
+Graph,V
+config.test.apply(),V
+getState.,V
+,V
+ReactDOM.renderToString(),V
+UserPro,V
+pool;,v
+pool,v
+class ,V
+--exclude=node_modules--exclude=gulp--languages=-javascript--langdef=js--langmap=js:.js--langmap=js:+.jsx--regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constant/--regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*\{/\1/o,object/--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*[ \t]*:[ \t]*\{/\1/o,object/--regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*\{/\1\.\2/o,object/--regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function\(\)/\1/c,class/--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*:[ \t]*\(function\(\)/\1/c,class/--regex-js=/class[ \t]+([A-Za-z0-9._$]+)[ \t]*/\1/c,class/--regex-js=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,class/--regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/--regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/--regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,function/--regex-js=/(function)*[ \t]*([A-Za-z$_][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/f,function/--regex-js=/['"]*([A-Za-z$][A-Za-z0-9_$]+)['"]*:[ \t]*function[ \t]*\(/\1/m,method/--regex-js=/([A-Za-z0-9_$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\2/m,method/--langdef=typescript--langmap=typescript:.ts--regex-typescript=/^[ \t]*(export)?[ \t]*class[ \t]+([a-zA-Z0-9_]+)/\2/c,classes/--regex-typescript=/^[ \t]*(export)?[ \t]*module[ \t]+([a-zA-Z0-9_]+)/\2/n,modules/--regex-typescript=/^[ \t]*(export)?[ \t]*function[ \t]+([a-zA-Z0-9_]+)/\2/f,functions/--regex-typescript=/^[ \t]*export[ \t]+var[ \t]+([a-zA-Z0-9_]+)/\1/v,variables/--regex-typescript=/^[ \t]*var[ \t]+([a-zA-Z0-9_]+)[ \t]*=[ \t]*function[ \t]*\(\)/\1/v,varlambdas/--regex-typescript=/^[ \t]*(export)?[ \t]*(public|private)[ \t]+(static)?[ \t]*([a-zA-Z0-9_]+)/\4/m,members/--regex-typescript=/^[ \t]*(export)?[ \t]*interface[ \t]+([a-zA-Z0-9_]+)/\2/i,interfaces/--regex-typescript=/^[ \t]*(export)?[ \t]*enum[ \t]+([a-zA-Z0-9_]+)/\2/e,enums/--regex-typescript=/^[ \t]*import[ \t]+([a-zA-Z0-9_]+)/\1/I,imports/,V
+-,v
+--exclude=node_modules--exclude=gulp--languages=-javascript--langdef=js--langmap=js:.js--langmap=js:+.jsx--regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constant/--regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*\{/\1/o,object/--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*[ \t]*:[ \t]*\{/\1/o,object/--regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*\{/\1\.\2/o,object/--regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function\(\)/\1/c,class/--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*:[ \t]*\(function\(\)/\1/c,class/--regex-js=/class[ \t]+([A-Za-z0-9._$]+)[ \t]*/\1/c,class/--regex-js=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,class/--regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/--regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/--regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,function/--regex-js=/(function)*[ \t]*([A-Za-z$_][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/f,function/--regex-js=/['"]*([A-Za-z$][A-Za-z0-9_$]+)['"]*:[ \t]*function[ \t]*\(/\1/m,method/--regex-js=/([A-Za-z0-9_$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\2/m,method/--langdef=typescript--langmap=typescript:.ts--regex-typescript=/^[ \t]*(export)?[ \t]*class[ \t]+([a-zA-Z0-9_]+)/\2/c,classes/--regex-typescript=/^[ \t]*(export)?[ \t]*module[ \t]+([a-zA-Z0-9_]+)/\2/n,modules/--regex-typescript=/^[ \t]*(export)?[ \t]*function[ \t]+([a-zA-Z0-9_]+)/\2/f,functions/--regex-typescript=/^[ \t]*export[ \t]+var[ \t]+([a-zA-Z0-9_]+)/\1/v,variables/--regex-typescript=/^[ \t]*var[ \t]+([a-zA-Z0-9_]+)[ \t]*=[ \t]*function[ \t]*\(\)/\1/v,varlambdas/--regex-typescript=/^[ \t]*(export)?[ \t]*(public|private)[ \t]+(static)?[ \t]*([a-zA-Z0-9_]+)/\4/m,members/--regex-typescript=/^[ \t]*(export)?[ \t]*interface[ \t]+([a-zA-Z0-9_]+)/\2/i,interfaces/--regex-typescript=/^[ \t]*(export)?[ \t]*enum[ \t]+([a-zA-Z0-9_]+)/\2/e,enums/--regex-typescript=/^[ \t]*import[ \t]+([a-zA-Z0-9_]+)/\1/I,imports/,v
+ 'package.json',v
+k,v
+c,v
+o,v
+l,v
+",v
+dev	package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.pump,V
+" Auto-load Vim scriptsPlug 'xolox/vim-misc'" Automated tag generation and syntax highlighingPlug 'xolox/vim-easytags',V
+easytags_dynamic_files,v
+set tags=./tags;,V
+t,v
+i,v
+g,v
+.,v
+/,v
+let g:easytags_always_enabled = 1,V
+" TODO known problems:" * current block not refreshing,V
+" ,V
+https://www.youtube.com/watch?v=MpV5rBLVkQI,v
+_hard,v
 But it ,V
 8,v
-,V
  ,v
-",v
 Plug 'morhetz/gruvbox',V
 https://www.deptofnumbers.com/income/new-york/,v
 b:q,V
@@ -19,7 +52,6 @@ s,v
 =,v
 p,v
 a,v
--,v
 usr/bin/chromium,v
  --app=,v
 m,v
@@ -29,16 +61,12 @@ d,v
  --new-window --start-fullscreen,v
 kiosk,v
 incognito,v
-t,v
 F,v
 v,v
 text/html; /usr/bin/chromium %s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal,V
 e,v
-o,v
 r,v
 h,v
-c,v
-l,v
 google,v
 text/html; chromium file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;,V
  xdg-open,v
@@ -70,31 +98,3 @@ https://github.com/pbrisbin/mail-query.git,v
  text/html text,v
 ##text/html; /usr/bin/xdg-open %s ; copiousoutput,V
 https://www.meetup.com/moriagari/events/vgthdryzmbfc/,v
-# autostart insyncinsync start,V
-#set smtp_url = "smtps://yourusername@yourdomain.ext@smtp.gmail.com:587",V
-#,v
-set smtp_pass = "wjsxmvfinhsnzwik",V
-set imap_pass = "wjsxmvfinhsnzwik",V
- "Ks58520824",V
- "Ks58520824",v
-w,v
-imap_pass,v
-set imap_pass = "Ks58520824",V
-count,v
-ORDER BY released_year,V
-ORDER BY released_yearGROUP BY released_year ASC;,V
-*,v
-COUNT,v
-\,v
-SERIAL,v
-INT NOT NULL UNIQUE,v
-SERIES,v
-INT,v
-AUTO_INCREMENT,v
-DROP DATABASE IF EXISTS book_shop;CREATE DATABASE book_shop;USE book_shop;  CREATE TABLE books 	(		book_id INT NOT NULL AUTO_INCREMENT,		title VARCHAR(100),		author_fname VARCHAR(100),		author_lname VARCHAR(100),		released_year INT,		stock_quantity INT,		pages INT,		PRIMARY KEY(book_id)	); INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)VALUES('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),('The Circle', 'Dave', 'Eggers', 2013, 26, 504),('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),('Just Kids', 'Patti', 'Smith', 2010, 55, 304),('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),('White Noise', 'Don', 'DeLillo', 1985, 49, 320),('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);,v
-import { graphqlRequest } from './requests';,V
-" Java autocompletionPlug 'artur-shaik/vim-javacomplete2',V
-Our engineering team operates on bi-weekly sprints. Each sprint begins with a Monday planning/brainstorming and end of day goal setting. Each week ends with a short retro and demos. Engineers are given autonomy and support to craft solutions to business problems. We ship frequently and leverage GitHub and Heroku to ease that process. Each improvement we make in our efficiency or reach leads to more first time homeowners.,v
-!/.config/vis/*,V
-!/.config/polybar/*,V
-!/.config/i3/ws/,V
