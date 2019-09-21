@@ -1,3 +1,7 @@
+30,v
+2,v
+%<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>,v
+{%b %d},v
 let g:airline_powerline_fonts = 0,V
 let g:airline_theme = 'gruvbox',V
 let g:airline#extensions#whitespace#enabled = 0,V
@@ -94,7 +98,3 @@ d,v
  --new-window --start-fullscreen,v
 kiosk,v
 incognito,v
-F,v
-v,v
-text/html; /usr/bin/chromium %s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal,V
-e,v
