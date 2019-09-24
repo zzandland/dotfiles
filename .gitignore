@@ -3,10 +3,10 @@
 !/.bashrc
 !/.ctags
 !/.calcurse/
-!/.calcurse/*
-!/.calcurse/caldav/*
+!/.calcurse/conf
+!/.calcurse/caldav/
+!/.calcurse/caldav/config
 !/.calcurse/hooks/*
-!/.calcurse/notes/*
 !/.config/
 !/.config/compton/
 !/.config/compton/*
@@ -34,4 +34,3 @@
 !/.config/xrandr/*
 !/Wallpapers/
 !/Wallpapers/*
-/.calcurse/caldav/oauth2_cred
