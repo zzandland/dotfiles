@@ -2,6 +2,11 @@
 !/.gitignore
 !/.bashrc
 !/.ctags
+!/.calcurse/
+!/.calcurse/*
+!/.calcurse/caldav/*
+!/.calcurse/hooks/*
+!/.calcurse/notes/*
 !/.config/
 !/.config/compton/
 !/.config/compton/*
@@ -29,3 +34,4 @@
 !/.config/xrandr/*
 !/Wallpapers/
 !/Wallpapers/*
+/.calcurse/caldav/oauth2_cred
