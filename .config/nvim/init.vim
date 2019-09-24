@@ -250,8 +250,6 @@ let g:ale_fixers = {
       \'cpp': ['clang-format'],
       \'python': ['add_blank_lines_for_python_control_statements', 'isort', 'yapf'],
       \}
-" auto fix on save
-let g:ale_fix_on_save = 1
 
 " Neomake ------------------------------
 
@@ -340,10 +338,10 @@ let g:deoplete#sources#ternjs#in_literal = 0
 
 "Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
+  \ 'jsx',
+  \ 'javascript.jsx',
+  \ 'vue',
+  \ ]
 
 " Jedi-vim ------------------------------
 
@@ -407,10 +405,33 @@ let g:yankring_history_dir = '~/.config/nvim/'
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'gruvbox'
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 1
+
+" enable/disable ale integration
+let g:airline#extensions#ale#enabled = 1
+" ale error_symbol
+let airline#extensions#ale#error_symbol = 'E:'
+" ale warning
+let airline#extensions#ale#warning_symbol = 'W:'
+" ale show_line_numbers
+let airline#extensions#ale#show_line_numbers = 1
+" ale open_lnum_symbol
+let airline#extensions#ale#open_lnum_symbol = '(L'
+" ale close_lnum_symbol
+let airline#extensions#ale#close_lnum_symbol = ')'
 
 " to use fancy symbols for airline, uncomment the following lines and use a
 " patched font (more info on the README.rst)
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
