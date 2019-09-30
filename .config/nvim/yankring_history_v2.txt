@@ -1,3 +1,9 @@
+o,v
+bin,v
+alias python=python3,V
+PATH="/usr/local/bin:$PATH",v
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim,V
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim,v
 !/.calcurse/caldav/,V
 !/.calcurse/notes/*,V
 *,v
@@ -92,9 +98,3 @@ D,v
 ',v
 0,v
     now(),,V
-    '2019/01/02 03:15:00',,V
-  ),V
-  CONCAT(,V
-    CONCAT    (      TRIM()    ),V
-      ,V
-'Month ',v
