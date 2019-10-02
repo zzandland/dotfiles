@@ -22,9 +22,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
-" Manages tag files automatically
-Plug 'ludovicchabant/vim-gutentags'
-
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
@@ -197,9 +194,6 @@ command Py !python %:t
 set background=dark
 colorscheme gruvbox8
 
-" Vim-Gutentags------------------------
-let g:gutentags_ctags_exclude=['node_modules', '.git', 'package*.json']
-
 " Tagbar -----------------------------
 
 " toggle tagbar display
@@ -249,6 +243,7 @@ let g:ale_fixers = {
       \'c': ['clang-format'],
       \'cpp': ['clang-format'],
       \'python': ['add_blank_lines_for_python_control_statements', 'isort', 'yapf'],
+      \'javascript': ['eslint'],
       \}
 
 " Neomake ------------------------------
