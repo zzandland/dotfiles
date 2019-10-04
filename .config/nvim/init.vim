@@ -215,12 +215,9 @@ nmap <F3> :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.class$', '\.o$']
 " no more ? for help
 let NERDTreeMinimalUI=1
-" use NERDtree instead of netrw
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " nerdtree starts when file opens
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " close nerdtree if only it remains
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -260,15 +257,9 @@ let g:ale_fixers = {
 " Fzf ------------------------------
 
 " file finder mapping
-nmap ,e :Files ~<CR>
-" tags (symbols) in current file finder mapping
-nmap ,g :BTags<CR>
-" tags (symbols) in all files finder mapping
-nmap ,G :Tags<CR>
-" general code finder in current file mapping
-nmap ,f :BLines<CR>
+nmap ,f :Files ~<CR>
 " general code finder in all files mapping
-nmap ,F :Lines<CR>
+nmap ,g :Rg<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
 " to be able to call CtrlP with default search text
@@ -333,10 +324,10 @@ let g:deoplete#sources#ternjs#in_literal = 0
 
 "Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
-  \ 'jsx',
-  \ 'javascript.jsx',
-  \ 'vue',
-  \ ]
+      \ 'jsx',
+      \ 'javascript.jsx',
+      \ 'vue',
+      \ ]
 
 " Jedi-vim ------------------------------
 
