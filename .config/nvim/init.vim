@@ -22,9 +22,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
-" Manages tag files automatically
-Plug 'ludovicchabant/vim-gutentags'
-
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
@@ -197,9 +194,6 @@ command Py !python %:t
 set background=dark
 colorscheme gruvbox8
 
-" Vim-Gutentags------------------------
-let g:gutentags_ctags_exclude=['node_modules', '.git', 'package*.json']
-
 " Tagbar -----------------------------
 
 " toggle tagbar display
@@ -244,12 +238,12 @@ map <F2> :TaskList<CR>
 nmap <F5> :ALEFix<CR>
 " ale fixers for languages
 let g:ale_fixers = {
-      \'*': ['remove_trailing_lines', 'trim_whitespace'],
-      \'java': ['google_java_format'],
-      \'c': ['clang-format'],
-      \'cpp': ['clang-format'],
-      \'python': ['add_blank_lines_for_python_control_statements', 'isort', 'yapf'],
-      \}
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'java': ['google_java_format'],
+      \ 'c': ['clang-format'],
+      \ 'cpp': ['clang-format'],
+      \ 'python': ['add_blank_lines_for_python_control_statements', 'isort', 'yapf'],
+      \ }
 
 " Neomake ------------------------------
 
@@ -265,15 +259,9 @@ let g:ale_fixers = {
 " Fzf ------------------------------
 
 " file finder mapping
-nmap ,e :Files ~<CR>
-" tags (symbols) in current file finder mapping
-nmap ,g :BTags<CR>
-" tags (symbols) in all files finder mapping
-nmap ,G :Tags<CR>
-" general code finder in current file mapping
-nmap ,f :BLines<CR>
+nmap ,f :Files ~<CR>
 " general code finder in all files mapping
-nmap ,F :Lines<CR>
+nmap ,g :Rg<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
 " to be able to call CtrlP with default search text
@@ -338,10 +326,10 @@ let g:deoplete#sources#ternjs#in_literal = 0
 
 "Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
-  \ 'jsx',
-  \ 'javascript.jsx',
-  \ 'vue',
-  \ ]
+      \ 'jsx',
+      \ 'javascript.jsx',
+      \ 'vue',
+      \ ]
 
 " Jedi-vim ------------------------------
 

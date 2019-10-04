@@ -8,6 +8,9 @@
 # Set vi-mode on BASH
 set -o vi
 
+# Use Ripgrep in fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 # Automate JVM bytecode compilation and execution
 jav() {
   javac "$1".java
