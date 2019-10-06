@@ -45,22 +45,6 @@ Plug 'junegunn/fzf.vim'
 " Pending tasks list
 Plug 'fisadev/FixedTaskList.vim'
 
-" " Async autocompletion
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" " Completion from other opened files
-" Plug 'Shougo/context_filetype.vim'
-" " Clang autocompletion
-" Plug 'Shougo/deoplete-clangx'
-" " Java autocompletion
-" Plug 'artur-shaik/vim-javacomplete2'
-" " Javascript autocompletion
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" " Python autocompletion
-" Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
-" " Just to add the python go-to-definition and similar features, autocompletion
-" " from this plugin is disabled
-" Plug 'davidhalter/jedi-vim'
-
 " Intellisense engine with full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -100,9 +84,6 @@ Plug 'valloric/MatchTagAlways'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" " Asynchronous syntax linting
-" Plug 'w0rp/ale'
-
 " Git integration
 Plug 'tpope/vim-fugitive'
 
@@ -114,9 +95,6 @@ Plug 'vim-scripts/YankRing.vim'
 
 " Window swapper
 Plug 'wesQ3/vim-windowswap'
-
-" Linters
-" Plug 'neomake/neomake'
 
 " Syntax highlighting for neomutt
 Plug 'neomutt/neomutt.vim'
@@ -232,37 +210,12 @@ let g:NERDSpaceDelims = 1
 " show pending tasks list
 map <F2> :TaskList<CR>
 
-" ALE ---------------------------------
-
-" trigger ale fixers
-nmap <F5> :ALEFix<CR>
-" ale fixers for languages
-let g:ale_fixers = {
-      \'*': ['remove_trailing_lines', 'trim_whitespace'],
-      \'java': ['google_java_format'],
-      \'c': ['clang-format'],
-      \'cpp': ['clang-format'],
-      \'python': ['add_blank_lines_for_python_control_statements', 'isort', 'yapf'],
-      \'javascript': ['eslint'],
-      \}
-
-" Neomake ------------------------------
-
-" Run linter on write
-" autocmd! BufWritePost * Neomake
-
-" Check code as python3 by default
-" let g:neomake_python_python_maker = neomake#makers#ft#python#python()
-" let g:neomake_python_flake8_maker = neomake#makers#ft#python#flake8()
-" let g:neomake_python_python_maker.exe = 'python3 -m py_compile'
-" let g:neomake_python_flake8_maker.exe = 'python3 -m flake8'
-
 " Fzf ------------------------------
 
 " file finder mapping
 nmap ,f :Files ~<CR>
 " general code finder in all files mapping
-nmap ,g :Rg<CR>
+nmap ,F :Rg<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
 " to be able to call CtrlP with default search text
