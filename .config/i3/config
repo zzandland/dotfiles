@@ -23,12 +23,13 @@ font pango:monospace 8
 for_window [class="^.*"] border pixel 1
 gaps inner 20
 gaps outer 5
+border_radius 10
 
 # color bars
 # class                 border  backgr. text    indicator
-client.focused          #000000 #af771b #ffffff #fabd2f
+client.focused          #000000 #242424 #ffffff #242424
 client.focused_inactive #333333 #242424 #ffffff #242424
-client.unfocused	#101010 #242424 #ffffff #242424
+client.unfocused	      #101010 #242424 #ffffff #242424
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -199,20 +200,29 @@ bindsym $mod + Control + Shift + Down exec xbacklight -dec 5
 # autostart dual screen settings
 exec_always --no-startup-id ~/.config/xrandr/monitor_autoswitcher.sh
 
+# autostart ibus
+exec --no-startup-id ibus-daemon
+
 # autostart polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # autostart conky
 exec_always --no-startup-id conky -c ~/.config/conky/conky.conf
 
-# autostart sequence
-exec ~/.config/i3/startup.sh
+# autostart dunst
+exec --no-startup-id dunst
+
+# autostart compton
+exec --no-startup-id compton -b
+
+# set background wallpaper
+exec --no-startup-id feh --bg-fill ~/Wallpapers/nature.png
+
+# autostart insync
+exec insync start
 
 # workstation setup
 exec ~/.config/i3/ws/main.sh
 
 # autostart redshift
 exec --no-startup-id redshift
-
-# autostart insync
-exec insync start
