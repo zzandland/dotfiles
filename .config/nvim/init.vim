@@ -210,27 +210,28 @@ let g:NERDSpaceDelims = 1
 " show pending tasks list
 map <F2> :TaskList<CR>
 
+" Coc -----------------------------------------
+nmap <F5> :CocCommand eslint.executeAutofix<CR>
+
 " Fzf ------------------------------
 
 " file finder mapping
-nmap ,f :Files ~<CR>
+nmap ,f :Files<CR>
 " general code finder in all files mapping
 nmap ,F :Rg<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
-" to be able to call CtrlP with default search text
-" function! CtrlPWithSearchText(search_text, ctrlp_command_end)
-    " execute ':CtrlP' . a:ctrlp_command_end
-    " call feedkeys(a:search_text)
-" endfunction
-" same as previous mappings, but calling with current word as default text
-"nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
-"nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
-"nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
-"nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
-"nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
-"nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
-"nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
+
+" Ripgrep setting with preview window
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --no-heading --fixed-strings --line-number --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
+      \   <bang>0)
 
 " Ack.vim ------------------------------
 
