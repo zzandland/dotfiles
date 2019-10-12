@@ -197,11 +197,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bindsym $mod + Control + Shift + Up exec xbacklight -inc 5
 bindsym $mod + Control + Shift + Down exec xbacklight -dec 5
 
+# workspace specific applications
+assign [class="discord"] $ws8
+assign [class="whats-app-nativefier-d52542"] $ws8
+assign [class="Slack"] $ws9
+
 # autostart dual screen settings
 exec_always --no-startup-id ~/.config/xrandr/monitor_autoswitcher.sh
-
-# autostart ibus
-exec --no-startup-id ibus-daemon
 
 # autostart polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -226,3 +228,11 @@ exec ~/.config/i3/ws/main.sh
 
 # autostart redshift
 exec --no-startup-id redshift
+
+# autostart ibus-daemon
+exec --no-startup-id ibus-daemon --xim -d -r
+
+# autostart desktop applications
+exec discord
+exec slack
+exec whatsapp-nativefier
