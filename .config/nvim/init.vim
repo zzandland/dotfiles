@@ -63,10 +63,6 @@ Plug 'jeetsukumaran/vim-indentwise'
 " Better language packs
 Plug 'sheerun/vim-polyglot'
 
-" Ack code search (requires ack installed in the system)
-Plug 'mileszs/ack.vim'
-" TODO is there a way to prevent the progress which hides the editor?
-
 " Paint css colors with the real color
 Plug 'lilydjwg/colorizer'
 " TODO is there a better option for neovim?
@@ -214,30 +210,80 @@ map <F2> :TaskList<CR>
 nmap <F5> :CocCommand eslint.executeAutofix<CR>
 
 " Fzf ------------------------------
+"
+" Reverse the layout to make the FZF list top-down
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+
+" Using the custom window creation function
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Function to create the custom floating window
+function! FloatingFZF()
+  " creates a scratch, unlisted, new, empty, unnamed buffer
+  " to be used in the floating window
+  let buf = nvim_create_buf(v:false, v:true)
+
+  " 90% of the height
+  let height = float2nr(&lines * 0.9)
+  " 60% of the height
+  let width = float2nr(&columns * 0.6)
+  " horizontal position (centralized)
+  let horizontal = float2nr((&columns - width) / 2)
+  " vertical position (one line down of the top)
+  let vertical = 1
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+" open the new window, floating, and enter to it
+call nvim_open_win(buf, v:true, opts)
+endfunction
+
+func! Test(a)
+    echom "cword: "."\"".a:a."\""
+endfunction
 
 " file finder mapping
 nmap ,f :Files<CR>
 " general code finder in all files mapping
-nmap ,F :Rg<CR>
+nmap ,r :Rg<CR>
+" search under the cursor
+nmap ,R :exec 'Rg' expand('<cword>')<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
 
+
 " Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:60%'), <bang>0)
 
 " Ripgrep setting with preview window
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --no-heading --fixed-strings --line-number --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
+      \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:60%'),
       \   <bang>0)
-
-" Ack.vim ------------------------------
-
-" mappings
-nmap ,r :Ack
-nmap ,wr :Ack <cword><CR>
 
 " Window Chooser ------------------------------
 
