@@ -36,5 +36,6 @@
 !/.config/vis/colors/*
 !/.config/xrandr/
 !/.config/xrandr/*
+!/.zshrc
 !/Wallpapers/
 !/Wallpapers/*
