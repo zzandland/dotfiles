@@ -16,7 +16,7 @@
 !/.config/i3/ws/*
 !/.config/nvim/
 !/.config/nvim/init.vim
-!/.config/nvim/package-lock.json
+!/.config/nvim/coc-settings.json
 !/.config/nvim/spell/
 !/.config/nvim/spell/en.utf-8.add
 !/.config/nvim/spell/en.utf-8.add.spl
