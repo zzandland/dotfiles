@@ -210,12 +210,6 @@ map <F4> :TagbarToggle<CR>
 " autofocus on tagbar open
 let g:tagbar_autofocus = 1
 
-" UltiSnips ----------------------------
-" use tab to use snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " NERDTree -----------------------------
 
 " open nerdtree with the current file selected
@@ -239,10 +233,12 @@ let g:NERDSpaceDelims = 1
 map <F2> :TaskList<CR>
 
 " Coc -----------------------------------------
+
+" eslint correction
 nmap <F5> :CocCommand eslint.executeAutofix<CR>
 
 " Fzf ------------------------------
-"
+
 " Reverse the layout to make the FZF list top-down
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 
