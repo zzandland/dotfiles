@@ -1,7 +1,6 @@
 *
 !/README.md
 !/.gitignore
-!/.bashrc
 !/.calcurse/
 !/.calcurse/conf
 !/.calcurse/caldav/

@@ -95,6 +95,19 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# Use Ripgrep in fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+# nvm config
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+source /usr/share/nvm/init-nvm.sh
+
+# ibus initialization
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
