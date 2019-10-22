@@ -188,12 +188,7 @@ endfunction
 
 " Toggle terminal on/off (neovim)
 nnoremap <F1> :call TermToggle(12)<CR>
-inoremap <F1> <Esc>:call TermToggle(12)<CR>
 tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
-
-" Terminal go back to normal mode
-tnoremap <Esc> <C-\><C-n>
-tnoremap :q! <C-\><C-n>:q!<CR>
 
 " ============================================================================
 " Plugins settings and mappings
