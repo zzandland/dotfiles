@@ -113,6 +113,9 @@ set shiftwidth=2
 " show line numbers
 set nu
 
+" show ruler at 100 characters mark
+set colorcolumn=100
+
 " omni completion
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
