@@ -36,5 +36,6 @@
 !/.config/xrandr/
 !/.config/xrandr/*
 !/.zshrc
+!/github-auth.sh
 !/Wallpapers/
 !/Wallpapers/*
