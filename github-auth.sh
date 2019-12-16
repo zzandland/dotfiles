@@ -1,6 +1,6 @@
 #usr/bin/expect -f
 
-github_token=`cat /mnt/c/Users/zzand/Google\ Drive/github-cli-token.txt`
+github_token=`cat /Users/davidkim/Google\ Drive/github-cli-token.txt`
 
 expect <<- DONE
   set timeout -1
