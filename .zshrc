@@ -18,6 +18,9 @@ export ZSH="/Users/davidkim/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 USER=``
 
+# Increase node heap memory limit to 4GB to run Divvy development server
+export NODE_OPTIONS="--max-old-space-size=4096"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
