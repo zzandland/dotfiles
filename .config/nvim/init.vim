@@ -18,6 +18,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 " Git plugin
 Plug 'Xuyuanp/nerdtree-git-plugin'
+" Shows git diff in the gutter
+Plug 'airblade/vim-gitgutter'
 
 " Class/module browser
 Plug 'majutsushi/tagbar'
@@ -231,15 +233,25 @@ let g:NERDSpaceDelims = 1
 map <F2> :TaskList<CR>
 
 " Coc -----------------------------------------
+" plugins
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+
 " eslint correction
 nmap <F5> :CocCommand eslint.executeAutofix<CR>
 
+" Fzf ------------------------------
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Fzf ------------------------------
+
 " Using the custom window creation function
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
