@@ -103,7 +103,7 @@ else
 fi
 
 # Use Ripgrep in fzf
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # nvm config
 export NVM_DIR="$HOME/.nvm"
