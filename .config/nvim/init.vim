@@ -116,7 +116,7 @@ set shiftwidth=2
 set nu
 
 " show ruler at 100 characters mark
-set colorcolumn=100
+set colorcolumn=110
 
 " omni completion
 filetype plugin indent on
