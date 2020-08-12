@@ -118,10 +118,6 @@ set nu
 " show ruler at 100 characters mark
 set colorcolumn=110
 
-" omni completion
-filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
-
 " spellcheck on
 set spelllang=en_us
 set spellfile=~/.config/nvim/spell/en.utf-8.add
