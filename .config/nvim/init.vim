@@ -27,15 +27,15 @@ Plug 'majutsushi/tagbar'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
-" Gruvbox theme for airline
-Plug 'morhetz/gruvbox'
-
 " Gruvbox 8 theme
 Plug 'lifepillar/vim-gruvbox8'
 
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Gruvbox theme for airline
+Plug 'morhetz/gruvbox'
 
 " Code and files fuzzy finder
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -69,9 +69,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'lilydjwg/colorizer'
 " TODO is there a better option for neovim?
 
-" Window chooser
-Plug 't9md/vim-choosewin'
-
 " Automatically sort python imports
 Plug 'fisadev/vim-isort'
 
@@ -91,11 +88,8 @@ Plug 'mhinz/vim-signify'
 " Yank history navigation
 Plug 'vim-scripts/YankRing.vim'
 
-" Window swapper
-Plug 'wesQ3/vim-windowswap'
-
-" Syntax highlighting for neomutt
-Plug 'neomutt/neomutt.vim'
+" Scrollbar
+Plug 'Xuyuanp/scrollbar.nvim'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
@@ -136,13 +130,6 @@ set wildmode=list:longest
 " automatically use the system clipboard for copy and paste
 set clipboard=unnamedplus
 
-" tab navigation mappings
-map tt :tabnew
-map <M-Right> :tabn<CR>
-imap <M-Right> <ESC>:tabn<CR>
-map <M-Left> :tabp<CR>
-imap <M-Left> <ESC>:tabp<CR>
-
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
@@ -155,15 +142,6 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " automate g++ Makefile compilation and execution
 command Make !make; ./test; make clean
 
-" automate g++ compilation and execution
-command C !g++ %:t; ./a.out; rm a.out
-
-" automate JVM bytecode compilation then execution
-command Jav !jav %:t:r
-
-" automate python execution
-command Py !python %:t
- 
 " Terminal Function
 let g:term_buf = 0
 let g:term_win = 0
@@ -214,6 +192,8 @@ nmap <F3> :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.class$', '\.o$']
 " no more ? for help
 let NERDTreeMinimalUI=1
+" automatically quit nerdtree after opening file
+let NERDTreeQuitOnOpen=1
 " nerdtree starts when file opens
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -392,3 +372,16 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
+
+" Scrollbar -----------------------------------------
+augroup scrollbar
+    autocmd!
+    autocmd BufEnter    * silent! lua require('scrollbar').show()
+    autocmd BufLeave    * silent! lua require('scrollbar').clear()
+
+    autocmd CursorMoved * silent! lua require('scrollbar').show()
+    autocmd VimResized  * silent! lua require('scrollbar').show()
+
+    autocmd FocusGained * silent! lua require('scrollbar').show()
+    autocmd FocusLost   * silent! lua require('scrollbar').clear()
+augroup end
