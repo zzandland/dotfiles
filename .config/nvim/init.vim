@@ -216,6 +216,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-clangd',
   \ ]
 
 " eslint correction
