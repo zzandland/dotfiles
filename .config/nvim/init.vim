@@ -62,8 +62,8 @@ Plug 'michaeljsmith/vim-indent-object'
 " Indentation based movements
 Plug 'jeetsukumaran/vim-indentwise'
 
-" Better language packs
-Plug 'sheerun/vim-polyglot'
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Paint css colors with the real color
 Plug 'lilydjwg/colorizer'
@@ -87,9 +87,6 @@ Plug 'mhinz/vim-signify'
 
 " Yank history navigation
 Plug 'vim-scripts/YankRing.vim'
-
-" Scrollbar
-Plug 'Xuyuanp/scrollbar.nvim'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
@@ -115,7 +112,7 @@ set colorcolumn=110
 " spellcheck on
 set spelllang=en_us
 set spellfile=~/.config/nvim/spell/en.utf-8.add
-autocmd BufNewFile,BufRead *.md,*.txt,*.tex setlocal spell
+" autocmd BufNewFile,BufRead *.md,*.txt,*.tex setlocal spell
 
 " needed so deoplete can auto select the first suggestion
 set completeopt+=noinsert
@@ -232,6 +229,17 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Using the custom window creation function
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" Treesitter ---------------------------------------
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -374,16 +382,3 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-
-" Scrollbar -----------------------------------------
-augroup scrollbar
-    autocmd!
-    autocmd BufEnter    * silent! lua require('scrollbar').show()
-    autocmd BufLeave    * silent! lua require('scrollbar').clear()
-
-    autocmd CursorMoved * silent! lua require('scrollbar').show()
-    autocmd VimResized  * silent! lua require('scrollbar').show()
-
-    autocmd FocusGained * silent! lua require('scrollbar').show()
-    autocmd FocusLost   * silent! lua require('scrollbar').clear()
-augroup end

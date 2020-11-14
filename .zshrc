@@ -11,6 +11,9 @@ ZSH_DISABLE_COMPFIX="true"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Add sml bin to PATH env var
+export PATH=/usr/local/smlnj/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
