@@ -97,6 +97,9 @@ call plug#end()
 " change leader key to comma
 let mapleader=","
 
+" use mouse
+set mouse=a
+
 " tabs and spaces handling
 set expandtab
 set tabstop=2
