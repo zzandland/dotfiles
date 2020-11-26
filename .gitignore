@@ -9,5 +9,11 @@
 !/.config/nvim/spell/
 !/.config/nvim/spell/en.utf-8.add
 !/.config/nvim/spell/en.utf-8.add.spl
+!/.config/yabai/
+!/.config/yabai/yabairc
+!/.config/skhd/
+!/.config/skhd/skhdrc
+!/.config/ubersicht/
+!/.config/ubersicht/widgets/
 !/.gitignore
 !/.zshrc
