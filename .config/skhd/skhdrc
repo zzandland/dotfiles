@@ -1,12 +1,3 @@
-# screen brightness control
-shift + cmd - w: /Users/mac/.config/skhd/brightness_control.sh +
-shift + cmd - q: /Users/mac/.config/skhd/brightness_control.sh -
-
-# volume control
-shift + cmd - a : m volume down
-shift + cmd - s : volume up
-shift + cmd - d : m volume mute
-
 # open terminal
 cmd - return : open -na /Applications/iTerm.app
 shift + cmd - return : open -na /Applications/Google\ Chrome.app
@@ -24,9 +15,9 @@ shift + cmd - k : yabai -m window --warp north
 shift + cmd - l : yabai -m window --warp east
 
 # Move focus container to workspace
-shift + cmd - m : yabai -m window --space last && yabai -m space --focus last
-shift + cmd - p : yabai -m window --space prev && yabai -m space --focus prev
-shift + cmd - n : yabai -m window --space next && yabai -m space --focus next
+# shift + cmd - m : yabai -m window --space last && yabai -m space --focus last
+# shift + cmd - p : yabai -m window --space prev && yabai -m space --focus prev
+# shift + cmd - n : yabai -m window --space next && yabai -m space --focus next
 shift + cmd - 1 : yabai -m window --space 1
 shift + cmd - 2 : yabai -m window --space 2
 shift + cmd - 3 : yabai -m window --space 3
