@@ -88,6 +88,9 @@ Plug 'mhinz/vim-signify'
 " Yank history navigation
 Plug 'vim-scripts/YankRing.vim'
 
+" Cmake integration
+Plug 'cdelledonne/vim-cmake'
+
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
 " ============================================================================
@@ -350,6 +353,15 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 " in clipboard
 let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '~/.config/nvim/'
+
+" Vim-cmake ---------------------------------
+let g:cmake_default_config = 'build'
+let g:cmake_jump_on_completion = 1
+let g:cmake_generate_options = [
+  \ '-G Ninja',
+  \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
+  \ ]
+let g:cmake_link_compile_commands = 1
 
 " Airline -------------------------------
 
