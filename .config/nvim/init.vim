@@ -16,31 +16,25 @@ Plug 'scrooloose/nerdcommenter'
 
 " Better fileviewer
 Plug 'scrooloose/nerdtree'
+
 " Git plugin
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Shows git diff in the gutter
-Plug 'airblade/vim-gitgutter'
-
-" Class/module browser
-Plug 'majutsushi/tagbar'
 
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
-" Gruvbox 8 theme
-Plug 'lifepillar/vim-gruvbox8'
+" Colorscheme helper
+Plug 'tjdevries/colorbuddy.vim'
 
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Gruvbox theme
+Plug 'sainnhe/gruvbox-material'
 
-" Gruvbox theme for airline
-Plug 'morhetz/gruvbox'
+" Lightline
+Plug 'itchyny/lightline.vim'
+" Coc diagnostics indicator for lightline
+Plug 'josa42/vim-lightline-coc'
 
-" Code and files fuzzy finder
-" Plug 'ctrlpvim/ctrlp.vim'
-" Extension to ctrlp, for fuzzy command finder
-" Plug 'fisadev/vim-ctrlp-cmdpalette'
+" Fuzzy Finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -66,8 +60,7 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " Paint css colors with the real color
-Plug 'lilydjwg/colorizer'
-" TODO is there a better option for neovim?
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Automatically sort python imports
 Plug 'fisadev/vim-isort'
@@ -75,14 +68,10 @@ Plug 'fisadev/vim-isort'
 " Highlight matching html tags
 Plug 'valloric/MatchTagAlways'
 
-" Code snippets for productivity
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " Git integration
 Plug 'tpope/vim-fugitive'
 
-" Git/mercurial/others diff icons on the side of the file lines
+" VCS display changes on line numbers
 Plug 'mhinz/vim-signify'
 
 " Yank history navigation
@@ -96,6 +85,12 @@ call plug#end()
 " ============================================================================
 " Vim settings and mappings
 " You can edit them as you wish
+
+" default update time of 4000ms (4s) is too slow for asynchronous tasks
+set updatetime=100
+
+" Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.
+set signcolumn=number
 
 " change leader key to comma
 let mapleader=","
@@ -112,13 +107,13 @@ set shiftwidth=2
 " show line numbers
 set nu
 
-" show ruler at 100 characters mark
+" show ruler at 110 characters mark
 set colorcolumn=110
 
 " spellcheck on
 set spelllang=en_us
 set spellfile=~/.config/nvim/spell/en.utf-8.add
-" autocmd BufNewFile,BufRead *.md,*.txt,*.tex setlocal spell
+autocmd BufNewFile,BufRead *.md,*.txt,*.tex setlocal spell
 
 " needed so deoplete can auto select the first suggestion
 set completeopt+=noinsert
@@ -149,23 +144,23 @@ command Make !make; ./test; make clean
 let g:term_buf = 0
 let g:term_win = 0
 function! TermToggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-            set nonumber
-            set norelativenumber
-            set signcolumn=no
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
+  if win_gotoid(g:term_win)
+    hide
+  else
+    botright new
+    exec "resize " . a:height
+    try
+      exec "buffer " . g:term_buf
+    catch
+      call termopen($SHELL, {"detach": 0})
+      let g:term_buf = bufnr("")
+      set nonumber
+      set norelativenumber
+      set signcolumn=no
+    endtry
+    startinsert!
+    let g:term_win = win_getid()
+  endif
 endfunction
 
 " Toggle terminal on/off (neovim)
@@ -176,16 +171,21 @@ tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
 " Plugins settings and mappings
 " Edit them as you wish.
 
-" Gruvbox -----------------------------
+" Gruvbox Material -----------------------------
+if has('termguicolors')
+  set termguicolors
+endif
+" For dark version.
 set background=dark
-colorscheme gruvbox8
+" For light version.
+" set background=light
+" Set contrast.
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
-" Tagbar -----------------------------
-
-" toggle tagbar display
-map <F4> :TagbarToggle<CR>
-" autofocus on tagbar open
-let g:tagbar_autofocus = 1
+" Colorizer
+lua require'colorizer'.setup()
 
 " NERDTree -----------------------------
 
@@ -212,6 +212,7 @@ let g:NERDSpaceDelims = 1
 map <F2> :TaskList<CR>
 
 " Coc -----------------------------------------
+
 " plugins
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -219,22 +220,12 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
-  \ 'coc-clangd',
-  \ 'coc-java',
+  \ 'coc-ccls',
+  \ 'coc-java', 
   \ ]
 
 " eslint correction
 nmap <F5> :CocCommand eslint.executeAutofix<CR>
-
-" Fzf ------------------------------
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Using the custom window creation function
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
 " Treesitter ---------------------------------------
 lua <<EOF
@@ -247,21 +238,42 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" Fzf ------------------------------
+
+" file finder mapping
+nmap <leader>f :Files<CR>
+" general code finder in all files mapping
+nmap <leader>r :Rg<CR>
+" search under the cursor
+nmap <leader>R :exec 'Rg' expand('<cword>')<CR>
+" commands finder mapping
+nmap <leader>c :Commands<CR>
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Using the custom window creation function
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
+let g:fzf_colors = {
+  \ 'fg': ['fg', 'Normal'],
+  \ 'bg': ['bg', 'Normal'],
+  \ 'hl': ['fg', 'Comment'],
+  \ 'fg+': ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+': ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+': ['fg', 'Statement'],
+  \ 'info': ['fg', 'PreProc'],
+  \ 'border': ['fg', 'Ignore'],
+  \ 'prompt': ['fg', 'Conditional'],
   \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
+  \ 'marker': ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+  \ 'header': ['fg', 'Comment'], 
+  \ }
 
 " Reverse the layout to make the FZF list top-down
 let $FZF_DEFAULT_OPTS='--layout=reverse'
@@ -282,29 +294,16 @@ function! FloatingFZF()
   let vertical = 1
 
   let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height
-        \ }
+  \ 'relative': 'editor',
+  \ 'row': vertical,
+  \ 'col': horizontal,
+  \ 'width': width,
+  \ 'height': height
+  \ }
 
 " open the new window, floating, and enter to it
 call nvim_open_win(buf, v:true, opts)
 endfunction
-
-func! Test(a)
-    echom "cword: "."\"".a:a."\""
-endfunction
-
-" file finder mapping
-nmap ,f :Files<CR>
-" general code finder in all files mapping
-nmap ,r :Rg<CR>
-" search under the cursor
-nmap ,R :exec 'Rg' expand('<cword>')<CR>
-" commands finder mapping
-nmap ,c :Commands<CR>
 
 " Files command with preview window
 command! -bang -nargs=? -complete=dir Files
@@ -314,15 +313,9 @@ command! -bang -nargs=? -complete=dir Files
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --no-heading --fixed-strings --line-number --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:60%'),
-  \   <bang>0)
-
-" Window Chooser ------------------------------
-
-" mapping
-nmap - <Plug>(choosewin)
-" show big letters
-let g:choosewin_overlay_enable = 1
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
+  \   <bang>0
+  \ )
 
 " Signify ------------------------------
 
@@ -330,15 +323,10 @@ let g:choosewin_overlay_enable = 1
 " UPDATE it to reflect your preferences, it will speed up opening files
 let g:signify_vcs_list = [ 'git', 'hg' ]
 " mappings to jump to changed blocks
-nmap <leader>sn <plug>(signify-next-hunk)
-nmap <leader>sp <plug>(signify-prev-hunk)
+nnoremap <leader>gd :SignifyHunkDiff<cr>
+nnoremap <leader>gu :SignifyHunkUndo<cr>
+
 " nicer colors
-highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
-highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
-highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
-highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
-highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
-highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 " Autoclose ------------------------------
 
@@ -359,41 +347,26 @@ let g:cmake_default_config = 'build'
 let g:cmake_jump_on_completion = 1
 let g:cmake_generate_options = [
   \ '-G Ninja',
-  \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
+  \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
   \ ]
 let g:cmake_link_compile_commands = 1
 
-" Airline -------------------------------
+" Lightline -------------------------------
+set noshowmode
+let g:lightline = {
+  \ 'colorscheme' : 'gruvbox_material',
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex'],
+  \     ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
+  \     ['coc_status']
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead',
+  \ },
+  \ }
 
-let g:airline_powerline_fonts = 0
-let g:airline_theme = 'gruvbox'
-let g:airline#extensions#whitespace#enabled = 1
-
-" enable/disable ale integration
-let g:airline#extensions#ale#enabled = 1
-" ale error_symbol
-let airline#extensions#ale#error_symbol = 'E:'
-" ale warning
-let airline#extensions#ale#warning_symbol = 'W:'
-" ale show_line_numbers
-let airline#extensions#ale#show_line_numbers = 1
-" ale open_lnum_symbol
-let airline#extensions#ale#open_lnum_symbol = '(L'
-" ale close_lnum_symbol
-let airline#extensions#ale#close_lnum_symbol = ')'
-
-" to use fancy symbols for airline, uncomment the following lines and use a
-" patched font (more info on the README.rst)
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+" register compoments:
+call lightline#coc#register()
