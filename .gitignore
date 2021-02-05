@@ -23,3 +23,6 @@
 .config/ubersicht/*
 !.config/ubersicht/widgets
 .config/ubersicht/widgets/.DS_Store
+
+# Whitelist iTerm2 configs
+!.config/iterm2
