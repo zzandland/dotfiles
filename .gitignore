@@ -1,19 +1,26 @@
-*
-!/bin/
-!/bin/*
-!/README.md
-!/.config/
-!/.config/nvim/
-!/.config/nvim/init.vim
-!/.config/nvim/coc-settings.json
-!/.config/nvim/spell/
-!/.config/nvim/spell/en.utf-8.add
-!/.config/nvim/spell/en.utf-8.add.spl
-!/.config/yabai/
-!/.config/yabai/yabairc
-!/.config/skhd/
-!/.config/skhd/skhdrc
-!/.config/ubersicht/
-!/.config/ubersicht/widgets/
-!/.gitignore
-!/.zshrc
+# Blacklist files/folders in same directory as the .gitignore file
+/*
+
+# Whitelist core files
+!README.md
+!.gitignore
+!.zshrc
+
+!.config
+.config/*
+
+# Whitelist neovim
+!.config/nvim
+.config/nvim/*
+!.config/nvim/init.vim
+!.config/nvim/coc-settings.json
+!.config/nvim/spell
+
+!.config/yabai/
+!.config/skhd/
+
+# Whitelist Ubersicht widgets
+!.config/ubersicht
+.config/ubersicht/*
+!.config/ubersicht/widgets
+.config/ubersicht/widgets/.DS_Store
