@@ -11,7 +11,7 @@
 !.config/yabai/
 !.config/skhd/
 
-# Whitelist neovim
+# Whitelist neovim configuration
 !.config/nvim
 .config/nvim/*
 !.config/nvim/init.vim
