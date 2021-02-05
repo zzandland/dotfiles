@@ -23,9 +23,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 
-" Colorscheme helper
-Plug 'tjdevries/colorbuddy.vim'
-
 " Gruvbox theme
 Plug 'sainnhe/gruvbox-material'
 
@@ -172,13 +169,13 @@ tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
 " Edit them as you wish.
 
 " Gruvbox Material -----------------------------
+
+" Set background initially to dark
 if has('termguicolors')
   set termguicolors
 endif
-" For dark version.
 set background=dark
-" For light version.
-" set background=light
+
 " Set contrast.
 let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_better_performance = 1
@@ -222,6 +219,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-ccls',
   \ 'coc-java', 
+  \ 'coc-pyright',
   \ ]
 
 " eslint correction
@@ -370,3 +368,17 @@ let g:lightline = {
 
 " register compoments:
 call lightline#coc#register()
+
+function! SetBackgroundMode(...)
+    let s:new_bg = "light"
+    if $NVIM_BACKGROUND ==? "dark"
+        let s:new_bg = "dark"
+    else
+        let s:new_bg = "light"
+    endif
+    if &background !=? s:new_bg
+        let &background = s:new_bg
+    endif
+endfunction
+
+call SetBackgroundMode()
