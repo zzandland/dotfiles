@@ -1,2 +1,3 @@
-# dotfiles
-Personal dotfiles for i3 WM
+# dotfile
+
+Personal configurations for zsh + neovim development
