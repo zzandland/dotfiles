@@ -371,13 +371,18 @@ call lightline#coc#register()
 
 function! SetBackgroundMode(...)
     let s:new_bg = "light"
+    let s:palette = "original"
     if $NVIM_BACKGROUND ==? "dark"
         let s:new_bg = "dark"
+        let s:palette = "material"
     else
         let s:new_bg = "light"
+        let s:palette = "original"
+
     endif
     if &background !=? s:new_bg
         let &background = s:new_bg
+        let g:gruvbox_material_palette = s:palette
     endif
 endfunction
 
