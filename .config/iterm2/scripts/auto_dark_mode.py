@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-Auto_Dark_Mode_Colors auto set profile colors based on iTerm2 application theme.
-To make this track the OS's theme, set Iterm2's theme to one of the theems other
-than `Light` or `Dark` in the General settings.
-To configure, update the mapping in `PROFILE_PRESETS` such that the profile
-name maps to the light and dark presets you'd like to use.
+The script automatically sets profile colors based on iTerm2 application theme. To make this track the OS's
+theme, set Iterm2's theme to one of the themes other than `Light` or `Dark` in the General settings.
+To configure, update the mapping in `PROFILE_PRESETS` such that the profile name maps to the light and dark
+presets you'd like to use.
 """
 
 import asyncio
@@ -16,7 +15,7 @@ import iterm2
 
 ColorPresets = namedtuple('preset_name', ['light', 'dark'])
 
-"""Mapping of Profile Name to Color presets"""
+# Mapping of Profile Name to Color presets
 PROFILE_PRESETS = {
     # Built in presets
     'Solarized (Auto)': ColorPresets('Solarized Light', 'Solarized Dark'),
@@ -80,6 +79,14 @@ async def set_color_presets(connection: iterm2.connection.Connection, new_dark_m
     names = get_color_presets_for_profiles(profiles, new_dark_mode)
     preset_lookup = await build_color_preset_lookup(connection, names)
 
+    for profile in profiles:
+        preset_name = get_color_preset_for_profile(profile.name, new_dark_mode)
+        if not preset_name:
+            continue
+        preset = preset_lookup[preset_name]
+        await profile.async_set_color_preset(preset)
+
+def update_zshrc(new_dark_mode: bool):
     ZSHRC_PATH = '~/.zshrc'
 
     with open(os.path.expanduser(ZSHRC_PATH), "r") as zshrc:
@@ -92,16 +99,9 @@ async def set_color_presets(connection: iterm2.connection.Connection, new_dark_m
             lines[-1] = 'export NVIM_BACKGROUND=%s\n' % (new_color)
             open(os.path.expanduser(ZSHRC_PATH), 'w').writelines(lines)
 
-    for profile in profiles:
-        preset_name = get_color_preset_for_profile(profile.name, new_dark_mode)
-        if not preset_name:
-            continue
-        preset = preset_lookup[preset_name]
-        await profile.async_set_color_preset(preset)
-
 async def is_dark_theme(monitor_or_app: Optional[Union[iterm2.VariableMonitor, iterm2.app.App]] = None) -> bool:
     """
-    Return whether or not the iTerm2 application theme is currently dark
+    Return whether the iTerm2 application theme is currently dark or not
     """
     # Extract the theme name from the variable monitor or application object
     theme_name = None
@@ -139,6 +139,7 @@ async def main(connection: iterm2.connection.Connection):
             is_dark = await is_dark_theme(monitor)
             if is_dark != was_dark:
                 await set_color_presets(connection, is_dark)
+                update_zshrc(is_dark)
                 was_dark = is_dark
 
 if __name__ == '__main__':
