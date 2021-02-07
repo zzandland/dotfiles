@@ -74,6 +74,9 @@ Plug 'mhinz/vim-signify'
 " Yank history navigation
 Plug 'vim-scripts/YankRing.vim'
 
+" Indent guides
+Plug 'glepnir/indent-guides.nvim'
+
 " Cmake integration
 Plug 'cdelledonne/vim-cmake'
 
@@ -240,6 +243,30 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" Indent Guides ------------------------------------
+lua <<EOF
+if (os.getenv('NVIM_BACKGROUND') == 'dark')
+then
+  fg = '#3C3836';
+  bg = '#504946';
+else
+  fg = '#EBDBB2';
+  bg = '#D5C4A1';
+end
+
+require('indent_guides').setup({
+  indent_levels = 30;
+  indent_guide_size = 1;
+  indent_start_level = 1;
+  indent_space_guides = true;
+  indent_tab_guides = false;
+  indent_soft_pattern = '\\s';
+  exclude_filetypes = {'help', 'dashboard', 'dashpreview', 'NvimTree', 'vista', 'sagahover'};
+  even_colors = {fg = fg, bg = bg};
+  odd_colors = {fg = bg, bg = fg};
+})
+EOF
+
 " Fzf ------------------------------
 
 " file finder mapping
@@ -374,20 +401,20 @@ let g:lightline = {
 call lightline#coc#register()
 
 function! SetBackgroundMode(...)
+  let s:new_bg = "light"
+  let s:palette = "original"
+  if $NVIM_BACKGROUND ==? "dark"
+    let s:new_bg = "dark"
+    let s:palette = "material"
+  else
     let s:new_bg = "light"
     let s:palette = "original"
-    if $NVIM_BACKGROUND ==? "dark"
-        let s:new_bg = "dark"
-        let s:palette = "material"
-    else
-        let s:new_bg = "light"
-        let s:palette = "original"
 
-    endif
-    if &background !=? s:new_bg
-        let &background = s:new_bg
-        let g:gruvbox_material_palette = s:palette
-    endif
+  endif
+  if &background !=? s:new_bg
+    let &background = s:new_bg
+    let g:gruvbox_material_palette = s:palette
+  endif
 endfunction
 
 call SetBackgroundMode()
