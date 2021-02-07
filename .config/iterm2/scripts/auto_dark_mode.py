@@ -44,8 +44,7 @@ async def build_color_preset_lookup(connection: iterm2.connection.Connection, pr
 
 def get_color_preset_for_profile(profile_name: str, dark_mode: bool) -> Optional[str]:
     """
-    Get the color preset name for a particular preset, given whether its
-    a dark or not-dark mode.
+    Get the color preset name for a particular preset, given whether its a dark or not-dark mode.
     If the profile is not a key in the PROFILE_PRESETS map, return None
     """
     if profile_name not in PROFILE_PRESETS:
@@ -95,7 +94,7 @@ def update_zshrc(new_dark_mode: bool):
         new_color = 'dark' if new_dark_mode else 'light'
 
         if old_color != new_color:
-            print('Updating neovim background color')
+            print('Updating Neovim background color')
             lines[-1] = 'export NVIM_BACKGROUND=%s\n' % (new_color)
             open(os.path.expanduser(ZSHRC_PATH), 'w').writelines(lines)
 
