@@ -107,6 +107,10 @@ set nu
 " show ruler at 110 characters mark
 set colorcolumn=110
 
+" make '/' search case-insensitive but sensitive if search is all capitals
+set ignorecase
+set smartcase
+
 " spellcheck on
 set spelllang=en_us
 set spellfile=~/.config/nvim/spell/en.utf-8.add
