@@ -341,7 +341,7 @@ command! -bang -nargs=? -complete=dir Files
 " Ripgrep setting with preview window
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --fixed-strings --line-number --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --block-buffered --color=always --fixed-strings --line-number --no-heading --smart-case --trim '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
   \   <bang>0
   \ )
@@ -350,7 +350,7 @@ command! -bang -nargs=* Rg
 
 " this first setting decides in which order try to guess your current vcs
 " UPDATE it to reflect your preferences, it will speed up opening files
-let g:signify_vcs_list = [ 'git', 'hg' ]
+let g:signify_vcs_list = ['git', 'hg']
 " mappings to jump to changed blocks
 nnoremap <leader>gd :SignifyHunkDiff<cr>
 nnoremap <leader>gu :SignifyHunkUndo<cr>
