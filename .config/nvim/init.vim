@@ -30,8 +30,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 " Coc diagnostics indicator for lightline
 Plug 'josa42/vim-lightline-coc'
-" Bufferline
-Plug 'mengelbrecht/lightline-bufferline'
 
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -365,7 +363,7 @@ command! -bang -nargs=? -complete=dir Files
 " Ripgrep setting with preview window
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --block-buffered --color=always --fixed-strings --line-number --no-heading --smart-case --trim '.shellescape(<q-args>), 1,
+  \   'rg --color=always --fixed-strings --line-number --no-heading --smart-case '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
   \   <bang>0
   \ )
@@ -410,16 +408,6 @@ set noshowmode
 " register coc compoments
 call lightline#coc#register()
 
-" bufferline configs
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#show_number = 2
-let g:lightline#bufferline#composed_number_map = {
-  \ 1:  '⑴ ', 2:  '⑵ ', 3:  '⑶ ', 4:  '⑷ ', 5:  '⑸ ',
-  \ 6:  '⑹ ', 7:  '⑺ ', 8:  '⑻ ', 9:  '⑼ ', 10: '⑽ ',
-  \ 11: '⑾ ', 12: '⑿ ', 13: '⒀ ', 14: '⒁ ', 15: '⒂ ',
-  \ 16: '⒃ ', 17: '⒄ ', 18: '⒅ ', 19: '⒆ ', 20: '⒇ '}
-let g:lightline#bufferline#clickable = 1
-
 let g:lightline = {
   \ 'colorscheme' : 'gruvbox_material',
   \ 'active': {
@@ -435,23 +423,19 @@ let g:lightline = {
   \     ['fileformat', 'fileencoding', 'filetype'],
   \   ],
   \ },
-  \ 'tabline': {
-  \   'left': [ ['buffers'] ],
-  \   'right': [ ['close'] ],
+  \ 'tab': {
+  \   'active': [ 'tabnum', 'filename', 'modified' ],
+  \   'inactive': [ 'tabnum', 'filename', 'modified' ],
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightlineFugitive',
-  \   'filename': 'FilenameWithIcon',
+  \   'filename': 'LightlineFilenameDevIcon',
   \   'filetype': 'LightlineFiletype',
-  \   'fileformat': 'FileformatWithIcon',
+  \   'fileformat': 'LightlineFileformatDevIcon',
   \ },
-  \ 'component_expand': {
-  \   'buffers': 'lightline#bufferline#buffers',
+  \ 'tab_component_function': {
+  \   'tabnum': 'LightlineTabDevIcons',
   \ },
-  \ 'component_type': {
-  \   'buffers': 'tabsel',
-  \ },
-  \ 'component_raw': { 'buffers': 1 },
   \ }
 
 function! LightlineFugitive()
@@ -461,7 +445,7 @@ function! LightlineFugitive()
   return ''
 endfunction
 
-function! FilenameWithIcon()
+function! LightlineFilenameDevIcon()
   return expand('%:t') !=# ''
   \ ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t')
   \ : '[No Name]'
@@ -471,6 +455,11 @@ function! LightlineFiletype()
   return winwidth(0) > 70 ? strlen(&filetype) ? &filetype : 'no ft' : ''
 endfunction
 
-function! FileformatWithIcon()
+function! LightlineFileformatDevIcon()
   return winwidth(0) > 70 ? &fileformat . ' ' . WebDevIconsGetFileFormatSymbol() : ''
+endfunction
+
+function! LightlineTabDevIcons(n)
+  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+  return a:n . ' ' . WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
 endfunction
