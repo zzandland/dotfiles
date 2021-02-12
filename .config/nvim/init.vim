@@ -30,6 +30,8 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 " Coc diagnostics indicator for lightline
 Plug 'josa42/vim-lightline-coc'
+" Bufferline
+Plug 'mengelbrecht/lightline-bufferline'
 
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -79,6 +81,9 @@ Plug 'glepnir/indent-guides.nvim'
 
 " Cmake integration
 Plug 'cdelledonne/vim-cmake'
+
+" Icons based on file extensions
+Plug 'ryanoasis/vim-devicons'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
@@ -171,6 +176,26 @@ endfunction
 nnoremap <F1> :call TermToggle(12)<CR>
 tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
 
+" Dynamically change background based on zsh env var
+function! SetBackgroundMode(...)
+  let s:new_bg = "light"
+  let s:palette = "original"
+  if $NVIM_BACKGROUND ==? "dark"
+    let s:new_bg = "dark"
+    let s:palette = "material"
+  else
+    let s:new_bg = "light"
+    let s:palette = "original"
+
+  endif
+  if &background !=? s:new_bg
+    let &background = s:new_bg
+    let g:gruvbox_material_palette = s:palette
+  endif
+endfunction
+
+call SetBackgroundMode()
+
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
@@ -181,7 +206,6 @@ tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
 if has('termguicolors')
   set termguicolors
 endif
-set background=dark
 
 " Set contrast.
 let g:gruvbox_material_palette='original'
@@ -341,7 +365,7 @@ command! -bang -nargs=? -complete=dir Files
 " Ripgrep setting with preview window
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --no-heading --fixed-strings --line-number --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --block-buffered --color=always --fixed-strings --line-number --no-heading --smart-case --trim '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
   \   <bang>0
   \ )
@@ -350,7 +374,7 @@ command! -bang -nargs=* Rg
 
 " this first setting decides in which order try to guess your current vcs
 " UPDATE it to reflect your preferences, it will speed up opening files
-let g:signify_vcs_list = [ 'git', 'hg' ]
+let g:signify_vcs_list = ['git', 'hg']
 " mappings to jump to changed blocks
 nnoremap <leader>gd :SignifyHunkDiff<cr>
 nnoremap <leader>gu :SignifyHunkUndo<cr>
@@ -382,39 +406,71 @@ let g:cmake_link_compile_commands = 1
 
 " Lightline -------------------------------
 set noshowmode
+
+" register coc compoments
+call lightline#coc#register()
+
+" bufferline configs
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#composed_number_map = {
+  \ 1:  '⑴ ', 2:  '⑵ ', 3:  '⑶ ', 4:  '⑷ ', 5:  '⑸ ',
+  \ 6:  '⑹ ', 7:  '⑺ ', 8:  '⑻ ', 9:  '⑼ ', 10: '⑽ ',
+  \ 11: '⑾ ', 12: '⑿ ', 13: '⒀ ', 14: '⒁ ', 15: '⒂ ',
+  \ 16: '⒃ ', 17: '⒄ ', 18: '⒅ ', 19: '⒆ ', 20: '⒇ '}
+let g:lightline#bufferline#clickable = 1
+
 let g:lightline = {
   \ 'colorscheme' : 'gruvbox_material',
   \ 'active': {
   \   'left': [
   \     ['mode', 'paste'],
-  \     ['gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex'],
+  \     ['fugitive', 'readonly', 'filename', 'modified'],
   \     ['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'],
-  \     ['coc_status']
+  \     ['coc_status'],
+  \   ],
+  \   'right': [
+  \     ['lineinfo'],
+  \     ['percent'],
+  \     ['fileformat', 'fileencoding', 'filetype'],
   \   ],
   \ },
-  \ 'component_function': {
-  \   'gitbranch': 'FugitiveHead',
+  \ 'tabline': {
+  \   'left': [ ['buffers'] ],
+  \   'right': [ ['close'] ],
   \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightlineFugitive',
+  \   'filename': 'FilenameWithIcon',
+  \   'filetype': 'LightlineFiletype',
+  \   'fileformat': 'FileformatWithIcon',
+  \ },
+  \ 'component_expand': {
+  \   'buffers': 'lightline#bufferline#buffers',
+  \ },
+  \ 'component_type': {
+  \   'buffers': 'tabsel',
+  \ },
+  \ 'component_raw': { 'buffers': 1 },
   \ }
 
-" register compoments:
-call lightline#coc#register()
-
-function! SetBackgroundMode(...)
-  let s:new_bg = "light"
-  let s:palette = "original"
-  if $NVIM_BACKGROUND ==? "dark"
-    let s:new_bg = "dark"
-    let s:palette = "material"
-  else
-    let s:new_bg = "light"
-    let s:palette = "original"
-
+function! LightlineFugitive()
+  if exists('*FugitiveHead')
+    return FugitiveHead()
   endif
-  if &background !=? s:new_bg
-    let &background = s:new_bg
-    let g:gruvbox_material_palette = s:palette
-  endif
+  return ''
 endfunction
 
-call SetBackgroundMode()
+function! FilenameWithIcon()
+  return expand('%:t') !=# ''
+  \ ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t')
+  \ : '[No Name]'
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? strlen(&filetype) ? &filetype : 'no ft' : ''
+endfunction
+
+function! FileformatWithIcon()
+  return winwidth(0) > 70 ? &fileformat . ' ' . WebDevIconsGetFileFormatSymbol() : ''
+endfunction
