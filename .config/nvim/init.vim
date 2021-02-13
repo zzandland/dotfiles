@@ -93,7 +93,7 @@ call plug#end()
 set updatetime=100
 
 " Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.
-set signcolumn=number
+set signcolumn=yes
 
 " change leader key to comma
 let mapleader=","
@@ -176,14 +176,14 @@ tnoremap <F1> <C-\><C-n>:call TermToggle(12)<CR>
 
 " Dynamically change background based on zsh env var
 function! SetBackgroundMode(...)
-  let s:new_bg = "light"
-  let s:palette = "original"
   if $NVIM_BACKGROUND ==? "dark"
-    let s:new_bg = "dark"
-    let s:palette = "material"
+    let s:new_bg = 'dark'
+    let s:palette = 'material'
+    let s:bat_colorscheme = 'gruvbox'
   else
-    let s:new_bg = "light"
-    let s:palette = "original"
+    let s:new_bg = 'light'
+    let s:palette = 'original'
+    let s:bat_colorscheme = 'gruvbox-light'
 
   endif
   if &background !=? s:new_bg
@@ -201,9 +201,7 @@ call SetBackgroundMode()
 " Gruvbox Material -----------------------------
 
 " Set background initially to dark
-if has('termguicolors')
-  set termguicolors
-endif
+if has('termguicolors') | set termguicolors | endif
 
 " Set contrast.
 let g:gruvbox_material_palette='original'
@@ -238,6 +236,12 @@ let g:NERDSpaceDelims = 1
 map <F2> :TaskList<CR>
 
 " Coc -----------------------------------------
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " plugins
 let g:coc_global_extensions = [
@@ -300,14 +304,14 @@ nmap <leader>R :exec 'Rg' expand('<cword>')<CR>
 " commands finder mapping
 nmap <leader>c :Commands<CR>
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 " Using the custom window creation function
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+let g:fzf_layout = {
+  \ 'window': {
+  \   'width': 0.95,
+  \   'height': 0.95,
+  \   'yoffset': 0.25,
+  \ }
+  \ }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors = {
@@ -328,56 +332,86 @@ let g:fzf_colors = {
 
 " Reverse the layout to make the FZF list top-down
 let $FZF_DEFAULT_OPTS='--layout=reverse'
+if executable('rg')
 
-" Function to create the custom floating window
-function! FloatingFZF()
-  " creates a scratch, unlisted, new, empty, unnamed buffer
-  " to be used in the floating window
-  let buf = nvim_create_buf(v:false, v:true)
+  let $FZF_FILES_COMMAND = 'rg --files --hidden --follow --ignore-case --glob "!.git/*"'
+  " Overriding fzf.vim's default :Files command.
+  " Pass zero or one args to Files command (which are then passed to FzfFiles). Support file path completion too.
+  command! -nargs=? -complete=file Files call FzfFiles(<q-args>)
 
-  " 90% of the height
-  let height = float2nr(&lines * 0.9)
-  " 60% of the height
-  let width = float2nr(&columns * 0.6)
-  " horizontal position (centralized)
-  let horizontal = float2nr((&columns - width) / 2)
-  " vertical position (one line down of the top)
-  let vertical = 1
+  " Ripgrep setting with preview window
+  command! -nargs=* -bang Rg call FzfRg(<q-args>, <bang>0)
 
-  let opts = {
-  \ 'relative': 'editor',
-  \ 'row': vertical,
-  \ 'col': horizontal,
-  \ 'width': width,
-  \ 'height': height
-  \ }
+endif
 
-" open the new window, floating, and enter to it
-call nvim_open_win(buf, v:true, opts)
+let $BAT_CMD = 'bat --style=numbers,changes --color always --theme ' . s:bat_colorscheme
+
+function! FzfFiles(qargs) abort
+  let s:file_options = '--preview "' . $BAT_CMD . ' {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
+
+  function! s:files(dir)
+    let l:cmd = $FZF_FILES_COMMAND
+    if a:dir != ''
+      let l:cmd .= ' ' . shellescape(a:dir)
+    endif
+    let l:files = split(system(l:cmd), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+    return l:result
+  endfunction
+
+  function! s:edit_file(lines)
+    if len(a:lines) < 2 | return | endif
+    let l:action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+    let l:cmd = get(l:action, a:lines[0], 'e')
+
+    for l:item in a:lines[1:]
+      let l:pos = stridx(l:item, ' ')
+      let l:file_path = l:item[pos+1:-1]
+      execute 'silent '. l:cmd . ' ' . l:file_path
+    endfor
+  endfunction
+
+  call fzf#run(fzf#wrap({
+    \ 'source': <sid>files(a:qargs),
+    \ 'sink*': function('s:edit_file'),
+    \ 'options': '-m' . ' ' . s:file_options,
+    \ }))
 endfunction
 
-" Files command with preview window
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:60%'), <bang>0)
-
-" Ripgrep setting with preview window
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --color=always --fixed-strings --line-number --no-heading --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%'),
-  \   <bang>0
-  \ )
+function! FzfRg(query, fullscreen)
+  let command_fmt = "rg --color=always --column --line-number --no-heading --smart-case -- %s | cut -d ':' -f 1,2,3"
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec, 'right:60%'), a:fullscreen)
+endfunction
 
 " Signify ------------------------------
 
-" this first setting decides in which order try to guess your current vcs
-" UPDATE it to reflect your preferences, it will speed up opening files
-let g:signify_vcs_list = ['git', 'hg']
-" mappings to jump to changed blocks
 nnoremap <leader>gd :SignifyHunkDiff<cr>
 nnoremap <leader>gu :SignifyHunkUndo<cr>
 
-" nicer colors
+" Which VCS to look for
+let g:signify_vcs_list = ['git', 'hg']
+
+highlight link SignifySignAdd             DiffAdd
+highlight link SignifySignChange          DiffChange
+highlight link SignifySignChangeDelete    SignifySignChange
+highlight link SignifySignDelete          DiffDelete
+highlight link SignifySignDeleteFirstLine SignifySignDelete
 
 " Autoclose ------------------------------
 
