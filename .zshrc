@@ -132,4 +132,12 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# Enable public access to X11 server on Windows
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+export LIBGL_ALWAYS_INDIRECT=1
+
+# Startup scripts
+auto_dark_mode
+
 export NVIM_BACKGROUND=light

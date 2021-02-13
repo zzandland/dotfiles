@@ -1,0 +1,100 @@
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+  "copyOnSelect": false,
+  "copyFormatting": false,
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Gruvbox Light",
+      "fontFace": "SauceCodePro NF",
+      "fontSize": 12
+    },
+    "list": [
+      {
+        "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+        "hidden": false,
+        "name": "Arch",
+        "source": "Windows.Terminal.Wsl",
+        "startingDirectory": "//wsl$/arch/home/zzandland"
+      },
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "commandline": "powershell.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "Command Prompt",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": false,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      }
+    ]
+  },
+  "schemes": [
+    {
+      "name": "Gruvbox Dark",
+      "background": "#282828",
+      "black": "#282828",
+      "brightBlack": "#928374",
+      "red": "#CC241D",
+      "brightRed": "#FB4934",
+      "green": "#98971A",
+      "brightGreen": "#B8BB26",
+      "yellow": "#D79921",
+      "brightYellow": "#FABD2F",
+      "blue": "#458588",
+      "brightBlue": "#83A598",
+      "purple": "#B16286",
+      "brightPurple": "#D3869B",
+      "cyan": "#689D6A",
+      "brightCyan": "#8EC07C",
+      "white": "#A89984",
+      "brightWhite": "#EBDBB2",
+      "foreground": "#EBDBB2",
+      "cursorColor": "#EBDBB2"
+    },
+    {
+      "name": "Gruvbox Light",
+      "background": "#FBF1C7",
+      "black": "#FBF1C7",
+      "brightBlack": "#928374",
+      "red": "#CC241D",
+      "brightRed": "#9D0006",
+      "green": "#98971A",
+      "brightGreen": "#79740E",
+      "yellow": "#D79921",
+      "brightYellow": "#B57614",
+      "blue": "#458588",
+      "brightBlue": "#076678",
+      "purple": "#B16286",
+      "brightPurple": "#8F3F71",
+      "cyan": "#689D6A",
+      "brightCyan": "#427B58",
+      "white": "#7C6F64",
+      "brightWhite": "#3C3836",
+      "foreground": "#3C3836",
+      "cursorColor": "#3C3836"
+    }
+  ],
+  "actions": [
+    {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "auto",
+        "splitMode": "duplicate"
+      },
+      "keys": "alt+shift+d"
+    }
+  ]
+}
