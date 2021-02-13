@@ -87,6 +87,7 @@ async def set_color_presets(connection: iterm2.connection.Connection, new_dark_m
 
 def update_zshrc(new_dark_mode: bool):
     ZSHRC_PATH = '~/.zshrc'
+    BATCONFIG_PATH = '~/.config/bat/config'
 
     with open(os.path.expanduser(ZSHRC_PATH), "r") as zshrc:
         lines = zshrc.readlines()
@@ -97,6 +98,10 @@ def update_zshrc(new_dark_mode: bool):
             print('Updating Neovim background color')
             lines[-1] = 'export NVIM_BACKGROUND=%s\n' % (new_color)
             open(os.path.expanduser(ZSHRC_PATH), 'w').writelines(lines)
+
+            with open(os.path.expanduser(BATCONFIG_PATH), "w") as batconfig:
+                theme = 'gruvbox' if new_dark_mode else 'gruvbox-light'
+                batconfig.write('--theme="%s"' % (theme))
 
 async def is_dark_theme(monitor_or_app: Optional[Union[iterm2.VariableMonitor, iterm2.app.App]] = None) -> bool:
     """
