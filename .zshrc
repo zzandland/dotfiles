@@ -112,7 +112,7 @@ else
 fi
 
 # Use Ripgrep in fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{.git,node_modules,vendor}"'
 
 # nvm config
 export NVM_DIR="$HOME/.nvm"

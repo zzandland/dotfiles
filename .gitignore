@@ -8,8 +8,6 @@
 
 !.config
 .config/*
-!.config/yabai/
-!.config/skhd/
 
 # Whitelist neovim configuration
 !.config/nvim
@@ -17,3 +15,6 @@
 !.config/nvim/init.vim
 !.config/nvim/coc-settings.json
 !.config/nvim/spell
+
+# Whitelist bat configuration
+!.config/bat
