@@ -8,8 +8,6 @@
 
 !.config
 .config/*
-!.config/yabai/
-!.config/skhd/
 
 # Whitelist neovim configuration
 !.config/nvim
@@ -26,3 +24,9 @@
 
 # Whitelist iTerm2 configs
 !.config/iterm2
+.config/iterm2/*
+!.config/iterm2/scripts
+!.config/iterm2/presets
+
+# Whitelist bat configuration
+!.config/bat

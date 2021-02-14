@@ -179,11 +179,9 @@ function! SetBackgroundMode(...)
   if $NVIM_BACKGROUND ==? "dark"
     let s:new_bg = 'dark'
     let s:palette = 'material'
-    let s:bat_colorscheme = 'gruvbox'
   else
     let s:new_bg = 'light'
     let s:palette = 'original'
-    let s:bat_colorscheme = 'gruvbox-light'
 
   endif
   if &background !=? s:new_bg
@@ -333,8 +331,6 @@ let g:fzf_colors = {
 " Reverse the layout to make the FZF list top-down
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 if executable('rg')
-
-  let $FZF_FILES_COMMAND = 'rg --files --hidden --follow --ignore-case --glob "!.git/*"'
   " Overriding fzf.vim's default :Files command.
   " Pass zero or one args to Files command (which are then passed to FzfFiles). Support file path completion too.
   command! -nargs=? -complete=file Files call FzfFiles(<q-args>)
@@ -344,13 +340,13 @@ if executable('rg')
 
 endif
 
-let $BAT_CMD = 'bat --style=numbers,changes --color always --theme ' . s:bat_colorscheme
+let $BAT_CMD = 'bat --style=numbers,changes --color always'
 
 function! FzfFiles(qargs) abort
   let s:file_options = '--preview "' . $BAT_CMD . ' {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
 
   function! s:files(dir)
-    let l:cmd = $FZF_FILES_COMMAND
+    let l:cmd = 'rg --files --hidden --glob "!{.git,node_modules,vendor}"'
     if a:dir != ''
       let l:cmd .= ' ' . shellescape(a:dir)
     endif
@@ -392,7 +388,7 @@ function! FzfFiles(qargs) abort
 endfunction
 
 function! FzfRg(query, fullscreen)
-  let command_fmt = "rg --color=always --column --line-number --no-heading --smart-case -- %s | cut -d ':' -f 1,2,3"
+  let command_fmt = 'rg --color=always --column --line-number --no-heading -- %s | cut -d ":" -f 1,2,3'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
