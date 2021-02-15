@@ -82,6 +82,10 @@ Plug 'cdelledonne/vim-cmake'
 
 " Icons based on file extensions
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+
+" Nice-looking tabline
+Plug 'romgrk/barbar.nvim'
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
@@ -257,7 +261,7 @@ let g:coc_global_extensions = [
 nmap <F5> :CocCommand eslint.executeAutofix<CR>
 
 " Treesitter ---------------------------------------
-lua <<EOF
+lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
@@ -268,7 +272,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Indent Guides ------------------------------------
-lua <<EOF
+lua << EOF
 if (os.getenv('NVIM_BACKGROUND') == 'dark')
 then
   fg = '#3C3836';
@@ -346,7 +350,7 @@ function! FzfFiles(qargs) abort
   let s:file_options = '--preview "' . $BAT_CMD . ' {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
 
   function! s:files(dir)
-    let l:cmd = 'rg --files --hidden --glob "!{.git,node_modules,vendor}"'
+    let l:cmd = 'rg --files --hidden --glob "!{.git,node_modules,vendor}" --smart-case'
     if a:dir != ''
       let l:cmd .= ' ' . shellescape(a:dir)
     endif
@@ -358,7 +362,8 @@ function! FzfFiles(qargs) abort
     let l:result = []
     for l:candidate in a:candidates
       let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      let l:extension = fnamemodify(l:candidate, ':e')
+      let l:icon = GetWebDevIcons(l:filename, l:extension)
       call add(l:result, printf('%s %s', l:icon, l:candidate))
     endfor
     return l:result
@@ -388,7 +393,7 @@ function! FzfFiles(qargs) abort
 endfunction
 
 function! FzfRg(query, fullscreen)
-  let command_fmt = 'rg --color=always --column --line-number --no-heading -- %s | cut -d ":" -f 1,2,3'
+  let command_fmt = 'rg --color=always --column --line-number --no-heading --smart-case -- %s | cut -d ":" -f 1,2,3'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
@@ -432,6 +437,19 @@ let g:cmake_generate_options = [
   \ ]
 let g:cmake_link_compile_commands = 1
 
+" Nvim-web-devicons --------------------------
+lua << EOF
+require'nvim-web-devicons'.setup {
+  -- globally enable default icons (default to false)
+  default = true;
+}
+EOF
+
+function! GetWebDevIcons(filename, extension)
+  let s:fn = luaeval("require'nvim-web-devicons'.get_icon")
+  return s:fn(a:filename, a:extension)
+endfunction
+
 " Lightline -------------------------------
 set noshowmode
 
@@ -454,17 +472,14 @@ let g:lightline = {
   \   ],
   \ },
   \ 'tab': {
-  \   'active': [ 'tabnum', 'filename', 'modified' ],
-  \   'inactive': [ 'tabnum', 'filename', 'modified' ],
+  \   'active': [],
+  \   'inactive': [],
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightlineFugitive',
   \   'filename': 'LightlineFilenameDevIcon',
   \   'filetype': 'LightlineFiletype',
   \   'fileformat': 'LightlineFileformatDevIcon',
-  \ },
-  \ 'tab_component_function': {
-  \   'tabnum': 'LightlineTabDevIcons',
   \ },
   \ }
 
@@ -477,7 +492,7 @@ endfunction
 
 function! LightlineFilenameDevIcon()
   return expand('%:t') !=# ''
-  \ ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t')
+  \ ? GetWebDevIcons(expand('%:t'), expand('%:e')) . ' ' . expand('%:t')
   \ : '[No Name]'
 endfunction
 
@@ -489,7 +504,7 @@ function! LightlineFileformatDevIcon()
   return winwidth(0) > 70 ? &fileformat . ' ' . WebDevIconsGetFileFormatSymbol() : ''
 endfunction
 
-function! LightlineTabDevIcons(n)
-  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
-  return a:n . ' ' . WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
-endfunction
+" Barbar ---------------------------------
+
+" Magic buffer-picking mode
+nnoremap <silent> <C-s> :BufferOrderByDirectory<ENTER> <bar> :BufferPick<CR>
