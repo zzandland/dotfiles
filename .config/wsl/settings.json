@@ -6,8 +6,8 @@
   "profiles": {
     "defaults": {
       "colorScheme": "Gruvbox Light",
-      "fontFace": "SauceCodePro NF",
-      "fontSize": 12
+      "fontFace": "FiraCode NF",
+      "fontSize": 10
     },
     "list": [
       {
