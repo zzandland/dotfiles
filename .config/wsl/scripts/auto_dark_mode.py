@@ -39,17 +39,15 @@ def update_zshrc(new_dark_mode: bool):
 
     with open(os.path.expanduser(ZSHRC_PATH), "r") as zshrc:
         lines = zshrc.readlines()
-        old_color = lines[-1].split('=')[1].strip()
         new_color = 'dark' if new_dark_mode else 'light'
 
-        if old_color != new_color:
-            print('Updating Neovim background color')
-            lines[-1] = 'export NVIM_BACKGROUND=%s\n' % (new_color)
-            open(os.path.expanduser(ZSHRC_PATH), 'w').writelines(lines)
+        print('Updating Neovim background color')
+        lines[-1] = 'export NVIM_BACKGROUND=%s\n' % (new_color)
+        open(os.path.expanduser(ZSHRC_PATH), 'w').writelines(lines)
 
-            with open(os.path.expanduser(BATCONFIG_PATH), 'w') as batconfig:
-                theme = 'gruvbox' if new_dark_mode else 'gruvbox-light'
-                batconfig.write('--theme="%s"' % (theme))
+        with open(os.path.expanduser(BATCONFIG_PATH), 'w') as batconfig:
+            theme = 'gruvbox' if new_dark_mode else 'gruvbox-light'
+            batconfig.write('--theme="%s"' % (theme))
 
 def update_config(config_path: str, data: Dict):
     with open(config_path, 'w') as config:
@@ -64,10 +62,8 @@ if __name__ == '__main__':
     with open(TERMINAL_CONFIG_PATH, 'r+') as config:
         data = json.load(config)
         is_dark = is_dark_theme()
-        old_profile = data['profiles']['defaults']['colorScheme']
-        new_profile = 'Gruvbox Dark' if is_dark else 'Gruvbox Light'
-        if old_profile != new_profile:
-            data['profiles']['defaults']['colorScheme'] = new_profile
-            update_zshrc(is_dark)
-            update_config(TERMINAL_CONFIG_PATH, data)
-            update_config(DOTFILE_CONFIG_PATH, data)
+        colorscheme = 'Gruvbox Dark' if is_dark else 'Gruvbox Light'
+        data['profiles']['defaults']['colorScheme'] = colorscheme
+        update_zshrc(is_dark)
+        update_config(TERMINAL_CONFIG_PATH, data)
+        update_config(DOTFILE_CONFIG_PATH, data)
