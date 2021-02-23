@@ -332,72 +332,29 @@ let g:fzf_colors = {
   \ 'header': ['fg', 'Comment'], 
   \ }
 
-" Reverse the layout to make the FZF list top-down
-let $FZF_DEFAULT_OPTS='--layout=reverse'
+let $FZF_DEFAULT_OPTS="--layout=reverse --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
 if executable('rg')
   " Overriding fzf.vim's default :Files command.
   " Pass zero or one args to Files command (which are then passed to FzfFiles). Support file path completion too.
-  command! -nargs=? -complete=file Files call FzfFiles(<q-args>)
+  command! -nargs=? -complete=dir Files call FzfFmtFiles(<q-args>)
 
   " Ripgrep setting with preview window
-  command! -nargs=* -bang Rg call FzfRg(<q-args>, <bang>0)
+  command! -nargs=? -bang Rg call FzfFmtRg(<q-args>)
 
 endif
 
-let $BAT_CMD = 'bat --style=numbers,changes --color always'
-
-function! FzfFiles(qargs) abort
-  let s:file_options = '--preview "' . $BAT_CMD . ' {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
-
-  function! s:files(dir)
-    let l:cmd = 'rg --files --hidden --glob "!{.git,node_modules,vendor}" --smart-case'
-    if a:dir != ''
-      let l:cmd .= ' ' . shellescape(a:dir)
-    endif
-    let l:files = split(system(l:cmd), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let l:result = []
-    for l:candidate in a:candidates
-      let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:extension = fnamemodify(l:candidate, ':e')
-      let l:icon = GetWebDevIcons(l:filename, l:extension)
-      call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
-    return l:result
-  endfunction
-
-  function! s:edit_file(lines)
-    if len(a:lines) < 2 | return | endif
-    let l:action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
-    let l:cmd = get(l:action, a:lines[0], 'e')
-
-    for l:item in a:lines[1:]
-      let l:pos = stridx(l:item, ' ')
-      let l:file_path = l:item[pos+1:-1]
-      execute 'silent '. l:cmd . ' ' . l:file_path
-    endfor
-  endfunction
-
-  call fzf#run(fzf#wrap({
-    \ 'source': <sid>files(a:qargs),
-    \ 'sink*': function('s:edit_file'),
-    \ 'options': '-m' . ' ' . s:file_options,
-    \ }))
+function! FzfFmtFiles(query)
+  let cmd = 'rg --color=always --files --hidden --ignore-case'
+  call fzf#vim#files(a:query, fzf#vim#with_preview(), 0)
 endfunction
 
-function! FzfRg(query, fullscreen)
-  let command_fmt = 'rg --color=always --column --line-number --no-heading --smart-case -- %s | cut -d ":" -f 1,2,3'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
+function! FzfFmtRg(query)
+  let cmd = 'rg --color=always --column --line-number --no-heading --smart-case -- %s | cut -d ":" -f 1,2,3'
+  let initial_command = printf(cmd, shellescape(a:query))
+  let reload_command = printf(cmd, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec, 'right:60%'), a:fullscreen)
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)
 endfunction
 
 " Signify ------------------------------
