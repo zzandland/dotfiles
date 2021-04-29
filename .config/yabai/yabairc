@@ -57,7 +57,7 @@ yabai -m config auto_balance                off
 # ====== Rules ============
 
 # only set iterm2, Google Chrome, Discord to use tiling
-yabai -m rule --add app!='^iTerm2$|^Google Chrome$|^Discord$' manage=off
+yabai -m rule --add app!='^Calendar$|^Mail$|^Google Chrome$|^Code$|^Slack$|^Discord$' manage=off
 
 # ====== Übersicht nibar update signals =====
 
