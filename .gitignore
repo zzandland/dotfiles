@@ -9,6 +9,9 @@
 !.config
 .config/*
 
+!.config/skhd
+!.config/skhd/skhdrc
+
 # Whitelist neovim configuration
 !.config/nvim
 .config/nvim/*

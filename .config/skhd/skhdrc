@@ -79,7 +79,7 @@ shift + ctrl + cmd - k : yabai -m window --insert north
 shift + ctrl + cmd - l : yabai -m window --insert east
 
 # Float / Unfloat window
-shift + cmd - space : yabai -m window --toggle float
+shift + cmd - space : yabai -m window --toggle zoom-fullscreen
 
 # Restart Yabai
 shift + ctrl + cmd - r :
