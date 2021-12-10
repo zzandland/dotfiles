@@ -53,7 +53,7 @@ HYPHEN_INSENSITIVE="true"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -93,6 +93,9 @@ plugins=(
   git
   vi-mode
   fzf
+  dotenv
+  kubectl
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,6 +120,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{.git,node_modules,vend
 # nvm config
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -126,10 +130,14 @@ export NVM_DIR="$HOME/.nvm"
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias docker="multipass exec primary --"
+# Use kubecolor as kubectl for colored output
+alias kubectl="kubecolor"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export NVIM_BACKGROUND=light
+
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/code/Raya/kube/clusters/icecream.kubeconfig

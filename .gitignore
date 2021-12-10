@@ -6,6 +6,9 @@
 !.gitignore
 !.zshrc
 
+# Whitelist p10k configuration
+!.p10k.zsh
+
 !.config
 .config/*
 
