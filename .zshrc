@@ -96,6 +96,7 @@ plugins=(
   git
   vi-mode
   fzf
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,11 +114,23 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+alias icadmin="~/code/Raya/macros/message-raya.sh --server icecream admin"
+alias isadmin="~/code/Raya/macros/message-raya.sh --server icecream-sundae admin"
+alias k8="kubectl"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# Add k8s cluster config
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/icecream-config
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
