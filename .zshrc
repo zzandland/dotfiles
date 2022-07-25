@@ -8,6 +8,9 @@ fi
 # Suppress ownership warning when starting oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
 
+# add GOBIN path
+export PATH=${HOME}/go/bin:$PATH
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -53,7 +56,7 @@ HYPHEN_INSENSITIVE="true"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -93,9 +96,8 @@ plugins=(
   git
   vi-mode
   fzf
-  dotenv
-  kubectl
   zsh-syntax-highlighting
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,32 +109,18 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
-# Use Ripgrep in fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{.git,node_modules,vendor}"'
-
-# nvm config
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias docker="multipass exec primary --"
-# Use kubecolor as kubectl for colored output
-alias kubectl="kubecolor"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+alias icadmin="~/code/Raya/macros/message-raya.sh --server icecream admin"
+alias isadmin="~/code/Raya/macros/message-raya.sh --server icecream-sundae admin"
+alias k8="kubectl"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -140,4 +128,10 @@ alias kubectl="kubecolor"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/code/Raya/kube/clusters/icecream.kubeconfig
+# Add k8s cluster config
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/icecream-config
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
